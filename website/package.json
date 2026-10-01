@@ -1,0 +1,20 @@
+{
+  "name": "cage-sports-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Responsive website for Cage Sports (Seerapalayam), built from the Stitch mobile exports.",
+  "scripts": {
+    "config": "node scripts/build-config.mjs",
+    "build:css": "tailwindcss -c tailwind.config.js -i src/input.css -o assets/css/site.css --minify",
+    "build": "npm run config && npm run build:css",
+    "watch": "tailwindcss -c tailwind.config.js -i src/input.css -o assets/css/site.css --watch",
+    "serve": "python3 -m http.server 4173"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.9",
+    "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.109.0"
+  }
+}

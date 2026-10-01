@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+    background-color: #111111;
+    scroll-behavior: smooth;
+    /* keeps in-page anchors clear of the fixed header */
+    scroll-padding-top: 5rem;
+    scrollbar-color: #333333 #111111;
+  }
+
+  body {
+    margin: 0;
+    background-color: #111111;
+    overscroll-behavior-y: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid #f5d547;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  .material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+    /* icon ligatures must never wrap or be selected as text */
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  .icon-fill {
+    font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+  }
+
+  /* ---- Review ticker --------------------------------------------------
+     Without JS (or with reduced motion) the reviews are a plain grid.
+     site.js adds .is-ticking, which turns them into scrolling rails:
+     1 rail on mobile, 2 on tablet, 3 on desktop. */
+  .ticker-track {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  @media (min-width: 768px) {
+    .ticker-track {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .ticker.is-ticking {
+    height: 380px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  }
+
+  .ticker.is-ticking .ticker-rails {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ticker.is-ticking .ticker-rail:nth-child(n + 2) {
+    display: none;
+  }
+
+  .ticker.is-ticking .ticker-track {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    animation: ticker-scroll-up var(--ticker-duration, 28s) linear infinite;
+  }
+
+  /* margin (not gap) so that -50% lands exactly on the duplicated set */
+  .ticker.is-ticking .ticker-track > * {
+    margin-bottom: 0.75rem;
+  }
+
+  .ticker.is-ticking:hover .ticker-track,
+  .ticker.is-ticking:focus-within .ticker-track,
+  .ticker.is-paused .ticker-track {
+    animation-play-state: paused;
+  }
+
+  @media (min-width: 768px) {
+    .ticker.is-ticking {
+      height: 420px;
+    }
+
+    .ticker.is-ticking .ticker-rails {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ticker.is-ticking .ticker-rail:nth-child(2) {
+      display: block;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .ticker.is-ticking .ticker-rails {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .ticker.is-ticking .ticker-rail:nth-child(3) {
+      display: block;
+    }
+  }
+}
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+@keyframes ticker-scroll-up {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.85);
+  cursor: pointer;
+}

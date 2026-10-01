@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Organizer Bookings | Cage Sports Seerapalayam</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#111111">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Oswald:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;icon_names=calendar_month,call,chat,check_circle,close,description,info,lock,logout,person,refresh,schedule,shield&amp;display=block" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body class="bg-surface-base font-body-md text-body-md text-on-surface flex flex-col min-h-screen antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
+
+  <header class="fixed top-0 inset-x-0 z-50 pt-safe bg-surface-base/95 backdrop-blur-md border-b border-[#262626] shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
+    <div class="max-w-site mx-auto h-16 px-4 md:px-8 flex items-center justify-between gap-3">
+      <a class="flex items-center gap-space-sm min-w-0" href="index.html" aria-label="Cage Sports Seerapalayam – Home">
+        <img alt="" class="w-8 h-9 md:w-9 md:h-10 object-contain shrink-0" src="assets/img/logo-96.png" width="75" height="96">
+        <span class="flex flex-col min-w-0">
+          <span class="font-headline-sm text-headline-sm md:text-headline-md uppercase tracking-wider text-primary-container leading-none md:leading-none">CAGE SPORTS</span>
+          <span class="font-label-md text-label-md text-text-dim uppercase tracking-widest leading-tight">ORGANIZER</span>
+        </span>
+      </a>
+      <button class="hidden items-center justify-center gap-1.5 bg-surface-panel border border-border-subtle text-on-surface hover:border-primary-container hover:text-primary-container font-label-caps text-label-caps uppercase px-3 md:px-4 min-h-[40px] rounded-full active:scale-95 transition shrink-0" id="sign-out-btn" type="button">
+        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">logout</span>
+        <span>Sign out</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-1 flex flex-col relative w-full pt-[calc(5rem+env(safe-area-inset-top,0px))] md:pt-[calc(5.5rem+env(safe-area-inset-top,0px))] pb-12 bg-surface-base">
+    <div class="max-w-site mx-auto w-full px-4 md:px-8 space-y-6">
+
+      <noscript>
+        <p class="bg-surface-panel border border-border-subtle rounded-xl p-4 font-body-sm text-body-sm text-on-surface">The organizer page needs JavaScript.</p>
+      </noscript>
+
+      <!-- Shown until the page knows whether someone is signed in -->
+      <p class="font-body-sm text-body-sm text-text-dim italic text-center py-10" id="loading-panel" role="status">Checking sign-in…</p>
+
+      <!-- Site not connected to Supabase yet -->
+      <section class="hidden max-w-xl mx-auto bg-surface-panel p-5 md:p-6 rounded-2xl border border-border-subtle/50 flex-col space-y-3" id="setup-panel" aria-labelledby="setup-heading">
+        <div class="flex items-center gap-space-xs text-status-booked">
+          <span class="material-symbols-outlined text-[20px]" aria-hidden="true">info</span>
+          <h1 class="font-headline-sm text-headline-sm uppercase" id="setup-heading">Bookings Are Not Connected Yet</h1>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface">This site has not been connected to its Supabase project, so there are no saved requests to show and nothing can be confirmed here.</p>
+        <p class="font-body-sm text-body-sm text-text-dim">To connect it: set <code class="text-primary-container">SUPABASE_URL</code> and <code class="text-primary-container">SUPABASE_ANON_KEY</code> in <code class="text-primary-container">.env</code>, run the database migration, then run <code class="text-primary-container">npm run build</code>. The full steps are in the website’s README.</p>
+      </section>
+
+      <!-- Sign in -->
+      <section class="hidden max-w-md mx-auto bg-surface-panel p-5 md:p-6 rounded-2xl border border-border-subtle/50 flex-col space-y-4" id="login-panel" aria-labelledby="login-heading">
+        <div class="flex items-center justify-between gap-3 border-b border-border-subtle/40 pb-3">
+          <h1 class="font-headline-sm text-headline-sm uppercase text-on-surface" id="login-heading">Organizer Sign In</h1>
+          <span class="material-symbols-outlined text-primary-container text-[20px]" aria-hidden="true">lock</span>
+        </div>
+        <p class="font-body-sm text-body-sm text-text-dim">Sign in with the organizer account to review booking requests.</p>
+        <form class="flex flex-col space-y-4" id="login-form">
+          <div class="flex flex-col space-y-1">
+            <label class="font-label-caps text-label-caps uppercase text-on-surface tracking-wide" for="login-email">Email</label>
+            <input class="w-full min-h-[44px] bg-surface-elevated text-on-surface px-space-md py-space-xs rounded-lg font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container border border-border-subtle placeholder:text-text-dim" id="login-email" name="email" required type="email" autocomplete="username">
+          </div>
+          <div class="flex flex-col space-y-1">
+            <label class="font-label-caps text-label-caps uppercase text-on-surface tracking-wide" for="login-password">Password</label>
+            <input class="w-full min-h-[44px] bg-surface-elevated text-on-surface px-space-md py-space-xs rounded-lg font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container border border-border-subtle placeholder:text-text-dim" id="login-password" name="password" required type="password" autocomplete="current-password">
+          </div>
+          <p class="hidden font-body-sm text-body-sm text-status-booked" id="login-error" role="alert"></p>
+          <button class="w-full min-h-[50px] bg-primary-container text-on-primary font-headline-sm text-[16px] uppercase tracking-wide rounded-full flex items-center justify-center gap-space-xs hover:brightness-110 active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(245,213,71,0.25)] font-bold" id="login-submit" type="submit">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">lock</span>
+            <span>SIGN IN</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- Signed in, but this account is not an organizer -->
+      <section class="hidden max-w-xl mx-auto bg-surface-panel p-5 md:p-6 rounded-2xl border border-border-subtle/50 flex-col space-y-3" id="denied-panel" aria-labelledby="denied-heading">
+        <div class="flex items-center gap-space-xs text-status-booked">
+          <span class="material-symbols-outlined text-[20px]" aria-hidden="true">lock</span>
+          <h1 class="font-headline-sm text-headline-sm uppercase" id="denied-heading">No Organizer Access</h1>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface" id="denied-message"></p>
+      </section>
+
+      <!-- Bookings -->
+      <section class="hidden flex-col space-y-5" id="dashboard" aria-labelledby="dashboard-heading">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-border-subtle/50 pb-5">
+          <div class="flex flex-col space-y-1 min-w-0">
+            <div class="flex items-center gap-space-xs">
+              <span class="w-2.5 h-2.5 rounded-full bg-status-live"></span>
+              <span class="font-label-caps text-label-caps uppercase tracking-wider text-primary-container">ARENA DESK</span>
+            </div>
+            <h1 class="font-headline-lg-mobile text-headline-lg-mobile md:text-headline-lg uppercase text-on-surface tracking-wide" id="dashboard-heading">BOOKING REQUESTS</h1>
+            <p class="font-body-sm text-body-sm text-text-dim truncate">Signed in as <span class="text-on-surface" id="organizer-email"></span></p>
+          </div>
+          <div class="flex items-center gap-3 shrink-0">
+            <span class="font-body-sm text-[12px] text-text-dim" id="last-updated" aria-live="polite"></span>
+            <button class="inline-flex items-center justify-center gap-1.5 bg-surface-panel border border-border-subtle text-on-surface hover:border-primary-container hover:text-primary-container font-label-caps text-label-caps uppercase px-4 min-h-[40px] rounded-full active:scale-95 transition" id="refresh-btn" type="button">
+              <span class="material-symbols-outlined text-[16px]" aria-hidden="true">refresh</span>
+              <span>Refresh</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-surface-elevated p-3 rounded-xl flex items-start gap-space-sm border border-border-subtle/40">
+          <span class="material-symbols-outlined text-primary-container text-[20px]" aria-hidden="true">info</span>
+          <p class="font-body-sm text-[12px] text-text-dim leading-snug">Confirming a request marks its date and time slot as booked for every visitor. Pending and declined requests never block a slot. Only one request can be confirmed per date and slot.</p>
+        </div>
+
+        <div class="flex flex-wrap gap-2" id="status-tabs" role="group" aria-label="Filter requests by status"></div>
+
+        <p class="hidden p-3 rounded-xl border font-body-sm text-body-sm" id="dashboard-message" tabindex="-1"></p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6" id="request-list"></div>
+        <p class="hidden font-body-sm text-body-sm text-text-dim italic text-center py-10" id="empty-state"></p>
+      </section>
+    </div>
+  </main>
+
+  <script src="assets/vendor/supabase.js" defer></script>
+  <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/booking-data.js" defer></script>
+  <script src="assets/js/organizer.js" defer></script>
+</body>
+</html>
