@@ -18,7 +18,7 @@
 
   <!-- Site header: brand + CALL on mobile, adds the primary nav from tablet up -->
   <header class="fixed top-0 inset-x-0 z-50 pt-safe bg-surface-base/95 backdrop-blur-md border-b border-[#262626] shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
-    <div class="max-w-site mx-auto h-16 px-4 md:px-8 flex items-center justify-between">
+    <div class="max-w-site mx-auto h-16 px-4 md:px-8 lg:px-4 flex items-center justify-between">
       <a class="flex items-center gap-space-sm" href="index.html" aria-label="Cage Sports Seerapalayam – Home">
         <img alt="" class="w-8 h-9 md:w-9 md:h-10 object-contain" src="assets/img/logo-96.png" width="75" height="96">
         <span class="flex flex-col">
@@ -40,11 +40,11 @@
     </div>
   </header>
 
-  <main class="flex-1 flex flex-col relative w-full pt-[calc(4rem+env(safe-area-inset-top,0px))] pb-24 md:pb-12 bg-surface-base">
-    <div class="flex flex-col w-full max-w-site mx-auto px-4 md:px-8 py-2 md:py-6">
+  <main class="flex-1 flex flex-col relative w-full pt-[calc(4rem+env(safe-area-inset-top,0px))] pb-24 md:pb-12 lg:pb-6 bg-surface-base">
+    <div class="flex flex-col w-full max-w-site mx-auto px-4 md:px-8 lg:px-4 py-2 md:py-6 lg:py-3">
 
       <!-- Arena gallery intro -->
-      <section class="pt-4 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#262626]/70 mb-6">
+      <section class="pt-4 lg:pt-2 pb-6 lg:pb-3 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#262626]/70 mb-6 lg:mb-3">
         <div class="flex flex-col gap-2 max-w-2xl">
           <div class="inline-flex items-center gap-2 self-start rounded-full bg-surface-panel border border-[#262626] px-3 py-1 shadow-sm">
             <span class="w-2 h-2 rounded-full bg-primary-container animate-pulse motion-reduce:animate-none"></span>
@@ -62,7 +62,7 @@
       </section>
 
       <!-- Photo grid: 1 col mobile, 2 cols large phones, 3 cols tablet, 4 cols desktop -->
-      <section class="pb-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 md:auto-rows-[280px] lg:auto-rows-[320px] xl:auto-rows-[380px]" id="gallery-container" aria-label="Arena photos">
+      <section class="pb-10 lg:pb-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-2.5 md:auto-rows-[280px] lg:auto-rows-[320px] xl:auto-rows-[380px]" id="gallery-container" aria-label="Arena photos">
         <figure class="gallery-item sm:col-span-2 flex flex-col rounded-xl overflow-hidden bg-surface-elevated border border-[#262626] transition-colors duration-200 hover:border-primary-container/40 group">
           <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] md:aspect-auto md:flex-1 bg-surface-container overflow-hidden">
             <img alt="Centre pitch with striped two-tone synthetic turf" class="absolute inset-0 w-full h-full object-cover object-[center_40%] group-hover:scale-105 transition-transform duration-500" src="assets/img/center-pitch-1200.jpg" srcset="assets/img/center-pitch-640.jpg 640w, assets/img/center-pitch-1200.jpg 1200w" sizes="(min-width: 1440px) 680px, (min-width: 1024px) 50vw, (min-width: 768px) 66vw, 100vw" width="1200" height="1600">
@@ -130,8 +130,8 @@
       </section>
 
       <!-- Booking callout -->
-      <section class="pb-8">
-        <div class="relative overflow-hidden rounded-2xl bg-surface-panel border border-[#262626] p-6 md:p-10 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <section class="pb-8 lg:pb-4">
+        <div class="relative overflow-hidden rounded-2xl bg-surface-panel border border-[#262626] p-6 md:p-10 lg:p-5 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 lg:gap-3">
           <div class="flex flex-col gap-2 max-w-xl relative z-10">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-[20px] text-primary-container" aria-hidden="true">sports_cricket</span>
@@ -160,8 +160,8 @@
       </section>
     </div>
 
-    <footer class="mt-2 max-w-site mx-auto w-full px-4 md:px-8 pb-space-lg text-center">
-      <div class="bg-surface-elevated/40 border border-border-subtle/40 rounded-2xl p-6 md:p-8 flex flex-col items-center gap-3">
+    <footer class="mt-2 lg:mt-1 max-w-site mx-auto w-full px-4 md:px-8 lg:px-4 pb-space-lg lg:pb-3 text-center">
+      <div class="bg-surface-elevated/40 border border-border-subtle/40 rounded-2xl p-6 md:p-8 lg:p-4 flex flex-col items-center gap-3">
         <img alt="" class="w-10 h-12 object-contain mb-1" src="assets/img/logo-256.png" width="199" height="256" loading="lazy">
         <p class="font-headline-sm text-headline-sm md:text-headline-md uppercase tracking-wide text-primary-container">CAGE SPORTS</p>
         <p class="font-label-caps text-label-caps uppercase text-on-surface">Cage Sports (Seerapalayam)</p>

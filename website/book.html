@@ -18,7 +18,7 @@
 
   <!-- Site header: brand + CALL on mobile, adds the primary nav from tablet up -->
   <header class="fixed top-0 inset-x-0 z-50 pt-safe bg-surface-base/95 backdrop-blur-md border-b border-[#262626] shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
-    <div class="max-w-site mx-auto h-16 px-4 md:px-8 flex items-center justify-between">
+    <div class="max-w-site mx-auto h-16 px-4 md:px-8 lg:px-4 flex items-center justify-between">
       <a class="flex items-center gap-space-sm" href="index.html" aria-label="Cage Sports Seerapalayam – Home">
         <img alt="" class="w-8 h-9 md:w-9 md:h-10 object-contain" src="assets/img/logo-96.png" width="75" height="96">
         <span class="flex flex-col">
@@ -40,8 +40,8 @@
     </div>
   </header>
 
-  <main class="flex-1 flex flex-col relative w-full pt-[calc(5rem+env(safe-area-inset-top,0px))] md:pt-[calc(5.5rem+env(safe-area-inset-top,0px))] pb-24 md:pb-12 bg-surface-base">
-    <div class="max-w-site mx-auto w-full px-4 md:px-8 space-y-6 lg:space-y-8">
+  <main class="flex-1 flex flex-col relative w-full pt-[calc(5rem+env(safe-area-inset-top,0px))] md:pt-[calc(5.5rem+env(safe-area-inset-top,0px))] lg:pt-[calc(4.75rem+env(safe-area-inset-top,0px))] pb-24 md:pb-12 lg:pb-6 bg-surface-base">
+    <div class="max-w-site mx-auto w-full px-4 md:px-8 lg:px-4 space-y-6 lg:space-y-4">
 
       <!-- Progress steps -->
       <ol class="w-full bg-surface-panel px-4 py-3 rounded-xl flex items-center justify-between border border-border-subtle/50 text-[11px] md:text-body-sm max-w-2xl mx-auto" id="booking-steps" aria-label="Booking steps">
@@ -67,7 +67,7 @@
       </ol>
 
       <!-- Page intro -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-border-subtle/50 pb-5">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-border-subtle/50 pb-5 lg:pb-2.5">
         <div class="flex flex-col space-y-1">
           <div class="flex items-center gap-space-xs">
             <span class="w-2.5 h-2.5 rounded-full bg-status-live animate-pulse motion-reduce:animate-none"></span>
@@ -86,11 +86,11 @@
         <p class="bg-surface-panel border border-border-subtle rounded-xl p-4 font-body-sm text-body-sm text-on-surface">The slot picker needs JavaScript. You can still reach the arena desk directly: call <a class="text-primary-container underline" href="tel:8428685286">84286 85286</a> or message us on <a class="text-primary-container underline" href="https://wa.me/918428685286">WhatsApp</a>.</p>
       </noscript>
 
-      <div class="flex flex-col space-y-6 lg:space-y-8 w-full">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-start">
+      <div class="flex flex-col space-y-6 lg:space-y-4 w-full">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-4 items-start">
 
           <!-- Step 1: activity -->
-          <section class="flex flex-col space-y-4 bg-surface-panel p-5 md:p-6 rounded-2xl border border-border-subtle/50 h-full" id="activity-section" aria-labelledby="activity-heading">
+          <section class="flex flex-col space-y-4 lg:space-y-2 bg-surface-panel p-5 md:p-6 lg:p-3 rounded-2xl border border-border-subtle/50 h-full" id="activity-section" aria-labelledby="activity-heading">
             <div class="flex items-center justify-between gap-3 border-b border-border-subtle/40 pb-3">
               <h2 class="flex items-center gap-space-xs font-headline-sm text-headline-sm uppercase" id="activity-heading"><span class="text-primary-container">1</span><span class="text-on-surface">CHOOSE ACTIVITY</span></h2>
               <span class="font-label-caps text-label-caps uppercase tracking-wider text-primary-container text-right" id="selected-activity-display" aria-live="polite">Birthday parties (Inquiry)</span>
@@ -128,12 +128,12 @@
           </section>
 
           <!-- Step 2: date -->
-          <section class="flex flex-col space-y-4 bg-surface-panel p-5 md:p-6 rounded-2xl border border-border-subtle/50 h-full" id="date-section" aria-labelledby="date-heading">
+          <section class="flex flex-col space-y-4 lg:space-y-2 bg-surface-panel p-5 md:p-6 lg:p-3 rounded-2xl border border-border-subtle/50 h-full" id="date-section" aria-labelledby="date-heading">
             <div class="flex items-center justify-between gap-3 border-b border-border-subtle/40 pb-3">
               <h2 class="flex items-center gap-space-xs font-headline-sm text-headline-sm uppercase" id="date-heading"><span class="text-primary-container">2</span><span class="text-on-surface">PREFERRED MATCH DATE</span></h2>
               <span class="font-label-caps text-label-caps text-text-dim uppercase tracking-wider transition-colors text-right" id="selected-date-display" aria-live="polite">NO DATE SELECTED</span>
             </div>
-            <div class="bg-surface-elevated/60 p-4 md:p-6 rounded-xl flex flex-col space-y-space-sm border border-border-subtle/50 flex-1 justify-between">
+            <div class="bg-surface-elevated/60 p-4 md:p-6 lg:p-3 rounded-xl flex flex-col space-y-space-sm border border-border-subtle/50 flex-1 justify-between">
               <div class="flex items-center justify-between pb-2 border-b border-border-subtle/40">
                 <button aria-label="Previous month" class="w-9 h-9 rounded-lg bg-surface-elevated flex items-center justify-center text-text-dim hover:text-on-surface transition-all" id="cal-prev-btn" type="button"><span class="material-symbols-outlined text-[18px]" aria-hidden="true">chevron_left</span></button>
                 <span class="font-headline-sm text-[16px] md:text-[18px] uppercase tracking-wider text-on-surface font-semibold" id="cal-month-display" aria-live="polite">&nbsp;</span>
@@ -148,10 +148,10 @@
           </section>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-4 items-start">
           <!-- Step 3: time -->
           <div class="lg:col-span-6 flex flex-col h-full">
-            <section class="flex flex-col space-y-4 bg-surface-panel p-5 md:p-6 rounded-2xl border border-border-subtle/50 h-full" id="time-section" aria-labelledby="time-heading">
+            <section class="flex flex-col space-y-4 lg:space-y-2 bg-surface-panel p-5 md:p-6 lg:p-3 rounded-2xl border border-border-subtle/50 h-full" id="time-section" aria-labelledby="time-heading">
               <div class="flex items-center justify-between gap-3 border-b border-border-subtle/40 pb-3">
                 <h2 class="flex items-center gap-space-xs font-headline-sm text-headline-sm uppercase" id="time-heading"><span class="text-primary-container">3</span><span class="text-on-surface">TIME-SLOT GRID</span></h2>
                 <span class="font-label-caps text-[11px] text-primary-container uppercase tracking-wider font-semibold text-right" id="selected-slot-display" aria-live="polite">NONE SELECTED</span>
@@ -183,7 +183,7 @@
 
           <!-- Step 4: contact desk request -->
           <div class="lg:col-span-6 flex flex-col h-full">
-            <section class="bg-surface-panel p-5 md:p-6 rounded-2xl flex flex-col space-y-space-md shadow-lg border border-border-subtle/50 h-full" aria-labelledby="desk-heading">
+            <section class="bg-surface-panel p-5 md:p-6 lg:p-3 rounded-2xl flex flex-col space-y-space-md lg:space-y-2 shadow-lg border border-border-subtle/50 h-full" aria-labelledby="desk-heading">
               <div class="flex items-center justify-between border-b border-border-subtle/40 pb-3">
                 <h2 class="flex items-center gap-space-xs font-headline-sm text-headline-sm uppercase" id="desk-heading"><span class="text-primary-container">4</span><span class="text-on-surface">CONTACT DESK REQUEST</span></h2>
                 <span class="material-symbols-outlined text-primary-container text-[20px]" aria-hidden="true">sports_score</span>
@@ -276,8 +276,8 @@
       </div>
 
       <!-- Events + venue -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 pt-2">
-        <section class="bg-gradient-to-br from-surface-panel to-surface-elevated p-5 md:p-6 rounded-2xl flex flex-col justify-between space-y-4 border border-border-subtle/50 shadow-md">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-4 pt-2 lg:pt-1">
+        <section class="bg-gradient-to-br from-surface-panel to-surface-elevated p-5 md:p-6 lg:p-3 rounded-2xl flex flex-col justify-between space-y-4 lg:space-y-2 border border-border-subtle/50 shadow-md">
           <div class="flex items-center gap-space-sm">
             <div class="w-11 h-11 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[24px]" aria-hidden="true">trophy</span></div>
             <div class="flex flex-col">
@@ -291,7 +291,7 @@
             <span class="font-headline-sm text-[14px] uppercase text-on-surface tracking-wide">SEND EVENT INQUIRY ON WHATSAPP</span>
           </a>
         </section>
-        <div class="bg-surface-elevated/70 p-5 md:p-6 rounded-2xl flex flex-col justify-between space-y-3 border border-border-subtle/40">
+        <div class="bg-surface-elevated/70 p-5 md:p-6 lg:p-3 rounded-2xl flex flex-col justify-between space-y-3 border border-border-subtle/40">
           <div class="flex flex-col space-y-2">
             <div class="flex items-center gap-space-xs text-primary-container">
               <span class="material-symbols-outlined text-[20px]" aria-hidden="true">location_on</span>
@@ -308,8 +308,8 @@
       </div>
     </div>
 
-    <footer class="mt-space-xl max-w-site mx-auto w-full px-4 md:px-8 pb-space-lg text-center">
-      <div class="bg-surface-elevated/40 border border-border-subtle/40 rounded-2xl p-6 md:p-8 flex flex-col items-center gap-3">
+    <footer class="mt-space-xl lg:mt-5 max-w-site mx-auto w-full px-4 md:px-8 lg:px-4 pb-space-lg lg:pb-3 text-center">
+      <div class="bg-surface-elevated/40 border border-border-subtle/40 rounded-2xl p-6 md:p-8 lg:p-4 flex flex-col items-center gap-3">
         <img alt="" class="w-10 h-12 object-contain mb-1" src="assets/img/logo-256.png" width="199" height="256" loading="lazy">
         <p class="font-headline-sm text-headline-sm md:text-headline-md uppercase tracking-wide text-primary-container">CAGE SPORTS</p>
         <p class="font-label-caps text-label-caps uppercase text-on-surface">Cage Sports (Seerapalayam)</p>
