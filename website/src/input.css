@@ -127,6 +127,16 @@
     filter: invert(1);
   }
 
+  /* Google's embedded map is always drawn light. In the dark theme it is colour-inverted
+     (hue kept) so it sits with the rest of the page; it stays fully interactive. */
+  .map-embed iframe {
+    border: 0;
+  }
+
+  html:not([data-theme="light"]) .map-embed iframe {
+    filter: invert(0.92) hue-rotate(180deg) brightness(0.95) contrast(0.9);
+  }
+
   /* The toggle shows the theme it switches TO: sun in dark, moon in light. */
   .theme-toggle .theme-icon-to-dark,
   html[data-theme="light"] .theme-toggle .theme-icon-to-light {

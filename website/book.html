@@ -292,18 +292,28 @@
             <span class="font-headline-sm text-[14px] uppercase text-on-surface tracking-wide">SEND EVENT INQUIRY ON WHATSAPP</span>
           </a>
         </section>
-        <div class="bg-surface-elevated/70 p-5 md:p-6 lg:p-3 rounded-2xl flex flex-col justify-between space-y-3 border border-border-subtle/40">
-          <div class="flex flex-col space-y-2">
-            <div class="flex items-center gap-space-xs text-primary-container">
-              <span class="material-symbols-outlined text-[20px]" aria-hidden="true">location_on</span>
-              <span class="font-label-caps text-label-caps uppercase tracking-wide">Cage Sports (Seerapalayam)</span>
+        <!-- Location details on the left, map on the right (stacked on mobile / tablet) -->
+        <div class="bg-surface-elevated/70 p-5 md:p-6 lg:p-3 rounded-2xl grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-3 border border-border-subtle/40">
+          <div class="flex flex-col justify-between space-y-3 min-w-0">
+            <div class="flex flex-col space-y-2">
+              <div class="flex items-center gap-space-xs text-primary-container">
+                <span class="material-symbols-outlined text-[20px]" aria-hidden="true">location_on</span>
+                <span class="font-label-caps text-label-caps uppercase tracking-wide">Cage Sports (Seerapalayam)</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-text-dim">No 91/1B, Bodipalayam, Seerapalayam, Coimbatore, Tamil Nadu-641105</p>
+              <a class="self-start inline-flex items-center justify-center gap-2 border border-primary-container text-primary-container hover:bg-primary-container hover:text-on-primary hover:border-transparent font-headline-sm text-headline-sm uppercase tracking-wide active:scale-[0.98] transition min-h-[44px] rounded-full px-5" href="https://www.google.com/maps/dir/?api=1&amp;destination=10.8852326,76.9746995" rel="noopener noreferrer" target="_blank">
+                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">directions</span>
+                <span>GET DIRECTIONS</span>
+                <span class="sr-only">(opens Google Maps in a new tab)</span>
+              </a>
             </div>
-            <p class="font-body-sm text-body-sm text-text-dim">No 91/1B, Bodipalayam, Seerapalayam, Coimbatore, Tamil Nadu-641105</p>
-            <a class="self-start inline-flex items-center gap-1 font-label-md text-label-md text-primary-container hover:underline uppercase py-1" href="https://www.google.co.in/maps/place/Cage+Sports+(Seerapalayam)/@10.8852326,76.9046617,12z/data=!4m10!1m2!2m1!1sCage+Sports!3m6!1s0x3ba85b505fc354df:0x985b4799a75ee9fa!8m2!3d10.8852326!4d76.9746995!15sCgtDYWdlIFNwb3J0c1oNIgtjYWdlIHNwb3J0c5IBDnNwb3J0c19jb21wbGV4mgEjQ2haRFNVaE5NRzluUzBWSlEwRm5TVU16ZUhGNmRXTjNFQUXgAQD6AQQIMhBM!16s%2Fg%2F11whh5pkwg?entry=ttu&amp;g_ep=EgoyMDI2MDkyOS4wIKXMDSoASAFQAw%3D%3D" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">directions</span><span>Get Driving Directions</span></a>
+            <div class="flex items-center gap-space-xs pt-2 border-t border-border-subtle/30 text-text-dim text-body-sm">
+              <span class="material-symbols-outlined text-[18px] text-primary-container" aria-hidden="true">schedule</span>
+              <span>Open 24 Hours <span class="text-text-dim">(Advance desk booking required)</span></span>
+            </div>
           </div>
-          <div class="flex items-center gap-space-xs pt-2 border-t border-border-subtle/30 text-text-dim text-body-sm">
-            <span class="material-symbols-outlined text-[18px] text-primary-container" aria-hidden="true">schedule</span>
-            <span>Open 24 Hours <span class="text-text-dim">(Advance desk booking required)</span></span>
+          <div class="map-embed relative w-full h-64 lg:h-auto lg:min-h-[220px] rounded-xl overflow-hidden border border-border-subtle bg-surface-elevated">
+            <iframe class="absolute inset-0 w-full h-full" src="https://www.google.com/maps?q=10.8852326,76.9746995&amp;z=16&amp;output=embed" title="Map of Cage Sports (Seerapalayam)" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
           </div>
         </div>
       </div>
