@@ -35,8 +35,8 @@ the header nav and sections move to multi-column grids; content is capped at 144
 
 ## Themes
 
-Dark is the default; the sun / moon button in the Home page header switches to light and
-back. The choice is saved in the browser (`localStorage`, key `cage-sports-theme`) and
+Dark is the default; the sun / moon button at the top right of every page's header switches to
+light and back. The choice is saved in the browser (`localStorage`, key `cage-sports-theme`) and
 applies to every page, including `/organizer.html`.
 
 - Colours are CSS variables generated in `tailwind.config.js`: `DARK` is the exported

@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Oswald:wght@500;600;700&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;icon_names=calendar_month,call,chat,check_circle,close,description,info,lock,logout,person,refresh,schedule,shield&amp;display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;icon_names=calendar_month,call,chat,check_circle,close,dark_mode,description,info,light_mode,lock,logout,person,refresh,schedule,shield&amp;display=block" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body class="bg-surface-base font-body-md text-body-md text-on-surface flex flex-col min-h-screen antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
@@ -26,10 +26,16 @@
           <span class="font-label-md text-label-md text-text-dim uppercase tracking-widest leading-tight">ORGANIZER</span>
         </span>
       </a>
-      <button class="hidden items-center justify-center gap-1.5 bg-surface-panel border border-border-subtle text-on-surface hover:border-primary-container hover:text-primary-container font-label-caps text-label-caps uppercase px-3 md:px-4 min-h-[40px] rounded-full active:scale-95 transition shrink-0" id="sign-out-btn" type="button">
-        <span class="material-symbols-outlined text-[16px]" aria-hidden="true">logout</span>
-        <span>Sign out</span>
-      </button>
+      <div class="flex items-center gap-2 shrink-0">
+        <button class="theme-toggle inline-flex items-center justify-center w-10 h-10 rounded-full bg-surface-panel border border-border-subtle text-on-surface hover:text-primary-container hover:border-primary-container active:scale-95 transition" id="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch to light theme">
+          <span class="material-symbols-outlined theme-icon-to-light text-[20px]" aria-hidden="true">light_mode</span>
+          <span class="material-symbols-outlined theme-icon-to-dark text-[20px]" aria-hidden="true">dark_mode</span>
+        </button>
+        <button class="hidden items-center justify-center gap-1.5 bg-surface-panel border border-border-subtle text-on-surface hover:border-primary-container hover:text-primary-container font-label-caps text-label-caps uppercase px-3 md:px-4 min-h-[40px] rounded-full active:scale-95 transition shrink-0" id="sign-out-btn" type="button">
+          <span class="material-symbols-outlined text-[16px]" aria-hidden="true">logout</span>
+          <span>Sign out</span>
+        </button>
+      </div>
     </div>
   </header>
 

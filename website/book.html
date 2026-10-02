@@ -12,12 +12,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Oswald:wght@500;600;700&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;icon_names=arrow_downward,arrow_forward,arrow_forward_ios,calendar_month,call,celebration,chat,check_circle,chevron_left,chevron_right,description,directions,domain,fence,grass,grid_on,groups,info,light_mode,location_on,open_in_new,person,photo_camera,pin_drop,radio_button_unchecked,schedule,send,shield,sports_and_outdoors,sports_baseball,sports_cricket,sports_score,sports_soccer,stadium,star,support_agent,trophy,verified,wb_sunny&amp;display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;icon_names=arrow_downward,arrow_forward,arrow_forward_ios,calendar_month,call,celebration,chat,check_circle,chevron_left,chevron_right,dark_mode,description,directions,domain,fence,grass,grid_on,groups,info,light_mode,location_on,open_in_new,person,photo_camera,pin_drop,radio_button_unchecked,schedule,send,shield,sports_and_outdoors,sports_baseball,sports_cricket,sports_score,sports_soccer,stadium,star,support_agent,trophy,verified,wb_sunny&amp;display=block" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body class="bg-surface-base font-body-md text-body-md text-on-surface flex flex-col min-h-screen antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
 
-  <!-- Site header: brand + CALL on mobile, adds the primary nav from tablet up -->
+  <!-- Site header: brand + theme toggle on mobile, adds the primary nav from tablet up -->
   <header class="fixed top-0 inset-x-0 z-50 pt-safe bg-surface-base/95 backdrop-blur-md border-b border-hairline shadow-header">
     <div class="max-w-site mx-auto h-16 px-4 md:px-8 lg:px-4 flex items-center justify-between">
       <a class="flex items-center gap-space-sm" href="index.html" aria-label="Cage Sports Seerapalayam – Home">
@@ -33,10 +33,10 @@
           <a class="font-label-caps text-label-caps uppercase text-text-dim hover:text-primary-container transition-colors" href="gallery.html">Gallery</a>
           <a aria-current="page" class="font-label-caps text-label-caps uppercase text-primary-container font-semibold" href="book.html">Book Slot</a>
         </nav>
-        <a class="inline-flex items-center justify-center gap-1.5 bg-primary-container text-on-primary font-bold text-[12px] md:text-body-sm md:font-bold px-3 md:px-4 py-1 md:py-1.5 rounded-full active:scale-95 hover:shadow-[0_0_20px_rgba(245,213,71,0.35)] transition tracking-wide shadow-sm" href="tel:8428685286">
-          <span class="material-symbols-outlined text-[14px] md:text-[16px]" aria-hidden="true">call</span>
-          <span>CALL</span>
-        </a>
+        <button class="theme-toggle inline-flex items-center justify-center w-10 h-10 rounded-full bg-surface-panel border border-border-subtle text-on-surface hover:text-primary-container hover:border-primary-container active:scale-95 transition" id="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch to light theme">
+          <span class="material-symbols-outlined theme-icon-to-light text-[20px]" aria-hidden="true">light_mode</span>
+          <span class="material-symbols-outlined theme-icon-to-dark text-[20px]" aria-hidden="true">dark_mode</span>
+        </button>
       </div>
     </div>
   </header>
