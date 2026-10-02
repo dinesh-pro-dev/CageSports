@@ -6,6 +6,7 @@
   <title>Arena Gallery | Cage Sports Seerapalayam</title>
   <meta name="description" content="Photos of the Cage Sports turf in Seerapalayam, Coimbatore – dual-tone synthetic pitch, cage enclosure, goal frames and match equipment.">
   <meta name="theme-color" content="#111111">
+  <script>try{if(localStorage.getItem("cage-sports-theme")==="light"){document.documentElement.setAttribute("data-theme","light");document.querySelector('meta[name="theme-color"]').setAttribute("content","#f3f3f0")}}catch(e){}</script>
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,10 +18,10 @@
 <body class="bg-surface-base font-body-md text-body-md text-on-surface flex flex-col min-h-screen antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
 
   <!-- Site header: brand + CALL on mobile, adds the primary nav from tablet up -->
-  <header class="fixed top-0 inset-x-0 z-50 pt-safe bg-surface-base/95 backdrop-blur-md border-b border-[#262626] shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
+  <header class="fixed top-0 inset-x-0 z-50 pt-safe bg-surface-base/95 backdrop-blur-md border-b border-hairline shadow-header">
     <div class="max-w-site mx-auto h-16 px-4 md:px-8 lg:px-4 flex items-center justify-between">
       <a class="flex items-center gap-space-sm" href="index.html" aria-label="Cage Sports Seerapalayam – Home">
-        <img alt="" class="w-8 h-9 md:w-9 md:h-10 object-contain" src="assets/img/logo-96.png" width="75" height="96">
+        <img alt="" class="logo-mark w-8 h-9 md:w-9 md:h-10 object-contain" src="assets/img/logo-96.png" width="75" height="96">
         <span class="flex flex-col">
           <span class="font-headline-sm text-headline-sm md:text-headline-md uppercase tracking-wider text-primary-container leading-none md:leading-none">CAGE SPORTS</span>
           <span class="font-label-md text-label-md text-text-dim uppercase tracking-widest leading-tight">SEERAPALAYAM</span>
@@ -44,9 +45,9 @@
     <div class="flex flex-col w-full max-w-site mx-auto px-4 md:px-8 lg:px-4 py-2 md:py-6 lg:py-3">
 
       <!-- Arena gallery intro -->
-      <section class="pt-4 lg:pt-2 pb-6 lg:pb-3 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#262626]/70 mb-6 lg:mb-3">
+      <section class="pt-4 lg:pt-2 pb-6 lg:pb-3 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-hairline/70 mb-6 lg:mb-3">
         <div class="flex flex-col gap-2 max-w-2xl">
-          <div class="inline-flex items-center gap-2 self-start rounded-full bg-surface-panel border border-[#262626] px-3 py-1 shadow-sm">
+          <div class="inline-flex items-center gap-2 self-start rounded-full bg-surface-panel border border-hairline px-3 py-1 shadow-sm">
             <span class="w-2 h-2 rounded-full bg-primary-container animate-pulse motion-reduce:animate-none"></span>
             <span class="font-label-caps text-xs uppercase text-primary-container tracking-widest">Ground Visuals</span>
             <span class="text-text-dim text-xs" aria-hidden="true">•</span>
@@ -55,7 +56,7 @@
           <h1 class="font-display-hero text-headline-lg-mobile md:text-4xl lg:text-5xl font-semibold uppercase text-on-surface tracking-wider leading-tight md:leading-tight lg:leading-tight">ARENA GALLERY</h1>
           <p class="font-body-md text-body-md md:text-base text-text-muted leading-relaxed">Real match grounds and facilities at Coimbatore’s tallest artificial turf venue. Dual-tone turf, tournament lighting, and cage enclosure.</p>
         </div>
-        <div class="flex items-center gap-2 self-start md:self-end text-xs font-label-caps text-text-dim bg-surface-elevated border border-[#333333] px-3.5 py-1.5 rounded-full shrink-0">
+        <div class="flex items-center gap-2 self-start md:self-end text-xs font-label-caps text-text-dim bg-surface-elevated border border-border-subtle px-3.5 py-1.5 rounded-full shrink-0">
           <span class="material-symbols-outlined text-[16px] text-primary-container" aria-hidden="true">photo_camera</span>
           <span>8 ARENA SHOTS</span>
         </div>
@@ -63,64 +64,64 @@
 
       <!-- Photo grid: 1 col mobile, 2 cols large phones, 3 cols tablet, 4 cols desktop -->
       <section class="pb-10 lg:pb-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-2.5 md:auto-rows-[280px] lg:auto-rows-[320px] xl:auto-rows-[380px]" id="gallery-container" aria-label="Arena photos">
-        <figure class="gallery-item sm:col-span-2 flex flex-col rounded-xl overflow-hidden bg-surface-elevated border border-[#262626] transition-colors duration-200 hover:border-primary-container/40 group">
-          <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] md:aspect-auto md:flex-1 bg-surface-container overflow-hidden">
+        <figure class="gallery-item sm:col-span-2 flex flex-col rounded-xl overflow-hidden bg-surface-elevated border border-hairline transition-colors duration-200 hover:border-primary-container/40 group">
+          <div class="theme-fixed-dark relative w-full aspect-[16/10] sm:aspect-[16/9] md:aspect-auto md:flex-1 bg-surface-container overflow-hidden">
             <img alt="Centre pitch with striped two-tone synthetic turf" class="absolute inset-0 w-full h-full object-cover object-[center_40%] group-hover:scale-105 transition-transform duration-500" src="assets/img/center-pitch-1200.jpg" srcset="assets/img/center-pitch-640.jpg 640w, assets/img/center-pitch-1200.jpg 1200w" sizes="(min-width: 1440px) 680px, (min-width: 1024px) 50vw, (min-width: 768px) 66vw, 100vw" width="1200" height="1600">
             <div class="absolute inset-0 bg-gradient-to-t from-surface-base via-surface-base/30 to-transparent opacity-90"></div>
             <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-[#131313]/90 backdrop-blur-sm border border-[#333333] px-3 py-1 rounded-full"><span class="material-symbols-outlined text-[15px] text-primary-container" aria-hidden="true">stadium</span><span class="font-label-caps text-xs text-on-surface uppercase tracking-wider">Pitch View</span></div>
             <figcaption class="absolute bottom-3 left-3 right-3 flex flex-col"><span class="font-headline-sm md:text-xl uppercase text-on-surface leading-tight font-semibold">Center Pitch &amp; Striped Synthetic Turf</span><span class="font-body-sm text-xs md:text-sm text-text-dim mt-0.5">Two-tone synthetic turf pitch with official markings</span></figcaption>
           </div>
         </figure>
-        <figure class="gallery-item flex flex-col rounded-xl overflow-hidden bg-surface-elevated border border-[#262626] transition-colors duration-200 hover:border-primary-container/40 group">
-          <div class="relative w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-auto md:flex-1 bg-surface-container overflow-hidden">
+        <figure class="gallery-item flex flex-col rounded-xl overflow-hidden bg-surface-elevated border border-hairline transition-colors duration-200 hover:border-primary-container/40 group">
+          <div class="theme-fixed-dark relative w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-auto md:flex-1 bg-surface-container overflow-hidden">
             <img alt="Corner boundary line and white markings on the turf" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="assets/img/corner-boundary-1200.jpg" srcset="assets/img/corner-boundary-640.jpg 640w, assets/img/corner-boundary-1200.jpg 1200w" sizes="(min-width: 1440px) 330px, (min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw" width="1200" height="1600">
             <div class="absolute inset-0 bg-gradient-to-t from-surface-base/95 via-surface-base/30 to-transparent"></div>
             <div class="absolute top-3 left-3 bg-[#131313]/90 backdrop-blur-sm border border-[#333333] px-2.5 py-0.5 rounded-full"><span class="font-label-caps uppercase text-primary-container text-[11px] tracking-wider">Boundary</span></div>
             <figcaption class="absolute bottom-3 left-3 right-3"><span class="font-headline-sm uppercase text-on-surface text-sm md:text-[15px] leading-tight block font-semibold">Corner Boundary Line &amp; White Markings</span><span class="font-body-sm text-text-muted text-xs block truncate mt-0.5">Perimeter turf &amp; boundary marking</span></figcaption>
           </div>
         </figure>
-        <figure class="gallery-item flex flex-col rounded-xl overflow-hidden bg-surface-elevated border border-[#262626] transition-colors duration-200 hover:border-primary-container/40 group">
-          <div class="relative w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-auto md:flex-1 bg-surface-container overflow-hidden">
+        <figure class="gallery-item flex flex-col rounded-xl overflow-hidden bg-surface-elevated border border-hairline transition-colors duration-200 hover:border-primary-container/40 group">
+          <div class="theme-fixed-dark relative w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-auto md:flex-1 bg-surface-container overflow-hidden">
             <img alt="Cricket bats and balls laid out on the turf" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="assets/img/cricket-gear-1200.jpg" srcset="assets/img/cricket-gear-640.jpg 640w, assets/img/cricket-gear-1200.jpg 1200w" sizes="(min-width: 1440px) 330px, (min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw" width="1200" height="1600" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-surface-base/95 via-surface-base/30 to-transparent"></div>
             <div class="absolute top-3 left-3 bg-primary-container text-on-primary px-2.5 py-0.5 rounded-full"><span class="font-label-caps uppercase text-[11px] tracking-wider font-semibold">Gear</span></div>
             <figcaption class="absolute bottom-3 left-3 right-3"><span class="font-headline-sm uppercase text-on-surface text-sm md:text-[15px] leading-tight block font-semibold">Cricket Bats &amp; Balls Equipment</span><span class="font-body-sm text-text-muted text-xs block truncate mt-0.5">Match play equipment</span></figcaption>
           </div>
         </figure>
-        <figure class="gallery-item sm:col-span-2 flex flex-col rounded-xl overflow-hidden bg-surface-elevated border border-[#262626] transition-colors duration-200 hover:border-primary-container/40 group">
-          <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] md:aspect-auto md:flex-1 bg-surface-container overflow-hidden">
+        <figure class="gallery-item sm:col-span-2 flex flex-col rounded-xl overflow-hidden bg-surface-elevated border border-hairline transition-colors duration-200 hover:border-primary-container/40 group">
+          <div class="theme-fixed-dark relative w-full aspect-[16/10] sm:aspect-[16/9] md:aspect-auto md:flex-1 bg-surface-container overflow-hidden">
             <img alt="High perimeter safety netting and goal frame" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="assets/img/cage-goal-1200.jpg" srcset="assets/img/cage-goal-640.jpg 640w, assets/img/cage-goal-1200.jpg 1200w" sizes="(min-width: 1440px) 680px, (min-width: 1024px) 50vw, (min-width: 768px) 66vw, 100vw" width="1200" height="1600" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-surface-base via-surface-base/30 to-transparent opacity-90"></div>
             <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-[#131313]/90 backdrop-blur-sm border border-[#333333] px-3 py-1 rounded-full"><span class="material-symbols-outlined text-[15px] text-primary-container" aria-hidden="true">grid_on</span><span class="font-label-caps text-xs text-on-surface uppercase tracking-wider">Arena Structure</span></div>
             <figcaption class="absolute bottom-3 left-3 right-3 flex flex-col"><span class="font-headline-sm md:text-xl uppercase text-on-surface leading-tight font-semibold">Perimeter Safety Netting &amp; Goal Frame</span><span class="font-body-sm text-xs md:text-sm text-text-dim mt-0.5">High netting enclosure and goal post</span></figcaption>
           </div>
         </figure>
-        <figure class="gallery-item md:col-span-2 lg:col-span-1 flex flex-col rounded-xl overflow-hidden bg-surface-elevated border border-[#262626] transition-colors duration-200 hover:border-primary-container/40 group">
-          <div class="relative w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-auto md:flex-1 bg-surface-container overflow-hidden">
+        <figure class="gallery-item md:col-span-2 lg:col-span-1 flex flex-col rounded-xl overflow-hidden bg-surface-elevated border border-hairline transition-colors duration-200 hover:border-primary-container/40 group">
+          <div class="theme-fixed-dark relative w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-auto md:flex-1 bg-surface-container overflow-hidden">
             <img alt="Full synthetic turf field under the overhead perimeter net" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="assets/img/full-field-1200.jpg" srcset="assets/img/full-field-640.jpg 640w, assets/img/full-field-1200.jpg 1200w" sizes="(min-width: 1440px) 680px, (min-width: 1024px) 50vw, (min-width: 768px) 66vw, 100vw" width="1200" height="1600" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-surface-base/95 via-surface-base/30 to-transparent"></div>
             <div class="absolute top-3 left-3 bg-[#131313]/90 backdrop-blur-sm border border-[#333333] px-2.5 py-0.5 rounded-full"><span class="font-label-caps uppercase text-primary-container text-[11px] tracking-wider">Field View</span></div>
             <figcaption class="absolute bottom-3 left-3 right-3"><span class="font-headline-sm uppercase text-on-surface text-sm md:text-[15px] leading-tight block font-semibold">Full Synthetic Turf Field</span><span class="font-body-sm text-text-muted text-xs block truncate mt-0.5">Perimeter netting and field view</span></figcaption>
           </div>
         </figure>
-        <figure class="gallery-item flex flex-col rounded-xl overflow-hidden bg-surface-elevated border border-[#262626] transition-colors duration-200 hover:border-primary-container/40 group">
-          <div class="relative w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-auto md:flex-1 bg-surface-container overflow-hidden">
+        <figure class="gallery-item flex flex-col rounded-xl overflow-hidden bg-surface-elevated border border-hairline transition-colors duration-200 hover:border-primary-container/40 group">
+          <div class="theme-fixed-dark relative w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-auto md:flex-1 bg-surface-container overflow-hidden">
             <img alt="Turf surface with white boundary markings" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="assets/img/turf-markings-1200.jpg" srcset="assets/img/turf-markings-640.jpg 640w, assets/img/turf-markings-1200.jpg 1200w" sizes="(min-width: 1440px) 330px, (min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw" width="1200" height="1600" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-surface-base/95 via-surface-base/30 to-transparent"></div>
             <div class="absolute top-3 left-3 bg-[#131313]/90 backdrop-blur-sm border border-[#333333] px-2.5 py-0.5 rounded-full"><span class="font-label-caps uppercase text-primary-container text-[11px] tracking-wider">Surface</span></div>
             <figcaption class="absolute bottom-3 left-3 right-3"><span class="font-headline-sm uppercase text-on-surface text-sm md:text-[15px] leading-tight block font-semibold">Turf Boundary Markings</span><span class="font-body-sm text-text-muted text-xs block truncate mt-0.5">White boundary lines</span></figcaption>
           </div>
         </figure>
-        <figure class="gallery-item lg:col-span-2 flex flex-col rounded-xl overflow-hidden bg-surface-elevated border border-[#262626] transition-colors duration-200 hover:border-primary-container/40 group">
-          <div class="relative w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-auto md:flex-1 bg-surface-container overflow-hidden">
+        <figure class="gallery-item lg:col-span-2 flex flex-col rounded-xl overflow-hidden bg-surface-elevated border border-hairline transition-colors duration-200 hover:border-primary-container/40 group">
+          <div class="theme-fixed-dark relative w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-auto md:flex-1 bg-surface-container overflow-hidden">
             <img alt="Side goal post frame and boundary perimeter" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="assets/img/side-goal-1200.jpg" srcset="assets/img/side-goal-640.jpg 640w, assets/img/side-goal-1200.jpg 1200w" sizes="(min-width: 1440px) 680px, (min-width: 1024px) 50vw, (min-width: 768px) 66vw, 100vw" width="1200" height="1600" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-surface-base/95 via-surface-base/30 to-transparent"></div>
             <div class="absolute top-3 left-3 bg-[#131313]/90 backdrop-blur-sm border border-[#333333] px-2.5 py-0.5 rounded-full"><span class="font-label-caps uppercase text-primary-container text-[11px] tracking-wider">Goal Area</span></div>
             <figcaption class="absolute bottom-3 left-3 right-3"><span class="font-headline-sm uppercase text-on-surface text-sm md:text-[15px] leading-tight block font-semibold">Side Goal Post Frame</span><span class="font-body-sm text-text-muted text-xs block truncate mt-0.5">Goal frame and boundary perimeter</span></figcaption>
           </div>
         </figure>
-        <figure class="gallery-item md:col-span-2 flex flex-col rounded-xl overflow-hidden bg-surface-elevated border border-[#262626] transition-colors duration-200 hover:border-primary-container/40 group">
-          <div class="relative w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-auto md:flex-1 bg-surface-container overflow-hidden">
+        <figure class="gallery-item md:col-span-2 flex flex-col rounded-xl overflow-hidden bg-surface-elevated border border-hairline transition-colors duration-200 hover:border-primary-container/40 group">
+          <div class="theme-fixed-dark relative w-full aspect-[4/3] sm:aspect-[3/4] md:aspect-auto md:flex-1 bg-surface-container overflow-hidden">
             <img alt="Wide view across the arena turf" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" src="assets/img/wide-arena-1200.jpg" srcset="assets/img/wide-arena-640.jpg 640w, assets/img/wide-arena-1200.jpg 1200w" sizes="(min-width: 1440px) 680px, (min-width: 1024px) 50vw, (min-width: 768px) 66vw, 100vw" width="1200" height="1600" loading="lazy">
             <div class="absolute inset-0 bg-gradient-to-t from-surface-base/95 via-surface-base/30 to-transparent"></div>
             <div class="absolute top-3 left-3 bg-[#131313]/90 backdrop-blur-sm border border-[#333333] px-2.5 py-0.5 rounded-full"><span class="font-label-caps uppercase text-primary-container text-[11px] tracking-wider">Ground</span></div>
@@ -131,7 +132,7 @@
 
       <!-- Booking callout -->
       <section class="pb-8 lg:pb-4">
-        <div class="relative overflow-hidden rounded-2xl bg-surface-panel border border-[#262626] p-6 md:p-10 lg:p-5 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 lg:gap-3">
+        <div class="relative overflow-hidden rounded-2xl bg-surface-panel border border-hairline p-6 md:p-10 lg:p-5 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6 lg:gap-3">
           <div class="flex flex-col gap-2 max-w-xl relative z-10">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-[20px] text-primary-container" aria-hidden="true">sports_cricket</span>
@@ -149,10 +150,10 @@
             <div class="flex flex-col gap-2 pt-1">
               <span class="font-label-caps text-xs uppercase text-text-dim text-center tracking-wider">Direct Arena Desk Connect</span>
               <div class="grid grid-cols-2 gap-2">
-                <a class="flex items-center justify-center gap-1.5 bg-surface-elevated py-2 px-3 min-h-[40px] rounded-lg border border-[#2c2c2c] active:bg-surface-container-high hover:border-[#444444] transition-colors" href="tel:8428685286"><span class="material-symbols-outlined text-[16px] text-primary-container" aria-hidden="true">call</span><span class="font-label-caps text-xs text-on-surface tracking-wider font-semibold">CALL</span></a>
-                <a class="flex items-center justify-center gap-1.5 bg-surface-elevated py-2 px-3 min-h-[40px] rounded-lg border border-[#2c2c2c] active:bg-surface-container-high hover:border-[#444444] transition-colors" href="https://wa.me/918428685286" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px] text-status-live" aria-hidden="true">chat</span><span class="font-label-caps text-xs text-on-surface tracking-wider font-semibold">WHATSAPP</span></a>
-                <a class="flex items-center justify-center gap-1.5 bg-surface-elevated py-2 px-3 min-h-[40px] rounded-lg border border-[#2c2c2c] active:bg-surface-container-high hover:border-[#444444] transition-colors" href="tel:8682826767"><span class="material-symbols-outlined text-[16px] text-primary-container" aria-hidden="true">support_agent</span><span class="font-label-caps text-xs text-on-surface tracking-wider font-semibold">CALL DESK</span></a>
-                <a class="flex items-center justify-center gap-1.5 bg-surface-elevated py-2 px-3 min-h-[40px] min-w-0 rounded-lg border border-[#2c2c2c] active:bg-surface-container-high hover:border-[#444444] transition-colors" href="https://www.instagram.com/cage_sports_official/" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px] text-primary-container" aria-hidden="true">photo_camera</span><span class="font-label-caps text-xs text-on-surface tracking-wider truncate font-semibold">@cage_sports</span></a>
+                <a class="flex items-center justify-center gap-1.5 bg-surface-elevated py-2 px-3 min-h-[40px] rounded-lg border border-hairline-strong active:bg-surface-container-high hover:border-hairline-hover transition-colors" href="tel:8428685286"><span class="material-symbols-outlined text-[16px] text-primary-container" aria-hidden="true">call</span><span class="font-label-caps text-xs text-on-surface tracking-wider font-semibold">CALL</span></a>
+                <a class="flex items-center justify-center gap-1.5 bg-surface-elevated py-2 px-3 min-h-[40px] rounded-lg border border-hairline-strong active:bg-surface-container-high hover:border-hairline-hover transition-colors" href="https://wa.me/918428685286" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px] text-status-live" aria-hidden="true">chat</span><span class="font-label-caps text-xs text-on-surface tracking-wider font-semibold">WHATSAPP</span></a>
+                <a class="flex items-center justify-center gap-1.5 bg-surface-elevated py-2 px-3 min-h-[40px] rounded-lg border border-hairline-strong active:bg-surface-container-high hover:border-hairline-hover transition-colors" href="tel:8682826767"><span class="material-symbols-outlined text-[16px] text-primary-container" aria-hidden="true">support_agent</span><span class="font-label-caps text-xs text-on-surface tracking-wider font-semibold">CALL DESK</span></a>
+                <a class="flex items-center justify-center gap-1.5 bg-surface-elevated py-2 px-3 min-h-[40px] min-w-0 rounded-lg border border-hairline-strong active:bg-surface-container-high hover:border-hairline-hover transition-colors" href="https://www.instagram.com/cage_sports_official/" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px] text-primary-container" aria-hidden="true">photo_camera</span><span class="font-label-caps text-xs text-on-surface tracking-wider truncate font-semibold">@cage_sports</span></a>
               </div>
             </div>
           </div>
@@ -162,7 +163,7 @@
 
     <footer class="mt-2 lg:mt-1 max-w-site mx-auto w-full px-4 md:px-8 lg:px-4 pb-space-lg lg:pb-3 text-center">
       <div class="bg-surface-elevated/40 border border-border-subtle/40 rounded-2xl p-6 md:p-8 lg:p-4 flex flex-col items-center gap-3">
-        <img alt="" class="w-10 h-12 object-contain mb-1" src="assets/img/logo-256.png" width="199" height="256" loading="lazy">
+        <img alt="" class="logo-mark w-10 h-12 object-contain mb-1" src="assets/img/logo-256.png" width="199" height="256" loading="lazy">
         <p class="font-headline-sm text-headline-sm md:text-headline-md uppercase tracking-wide text-primary-container">CAGE SPORTS</p>
         <p class="font-label-caps text-label-caps uppercase text-on-surface">Cage Sports (Seerapalayam)</p>
         <p class="font-body-sm text-body-sm text-text-dim max-w-md">No 91/1B, Bodipalayam, Seerapalayam, Coimbatore, Tamil Nadu-641105</p>
@@ -179,13 +180,13 @@
   </main>
 
   <!-- Mobile tab bar (replaced by the header nav from tablet up) -->
-  <nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface-elevated/95 backdrop-blur-md border-t border-[#262626] shadow-[0_-2px_12px_rgba(0,0,0,0.5)] md:hidden" aria-label="Primary">
+  <nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface-elevated/95 backdrop-blur-md border-t border-hairline shadow-tabbar md:hidden" aria-label="Primary">
     <div class="flex justify-around items-center h-16 px-space-sm max-w-md mx-auto">
       <a class="flex flex-col items-center justify-center gap-space-xs flex-1 h-full min-h-[44px] text-text-dim hover:text-on-surface transition-colors" href="index.html"><span class="material-symbols-outlined text-[24px]" aria-hidden="true">sports_soccer</span><span class="font-label-caps text-label-caps uppercase">Home</span></a>
       <a aria-current="page" class="flex flex-col items-center justify-center gap-space-xs flex-1 h-full min-h-[44px] transition-colors text-primary-container font-semibold" href="gallery.html"><span class="material-symbols-outlined text-[24px]" aria-hidden="true">photo_camera</span><span class="font-label-caps text-label-caps uppercase">Gallery</span></a>
       <a class="flex flex-col items-center justify-center gap-space-xs flex-1 h-full min-h-[44px] text-text-dim hover:text-on-surface transition-colors" href="book.html"><span class="material-symbols-outlined text-[24px]" aria-hidden="true">calendar_month</span><span class="font-label-caps text-label-caps uppercase">Book Slot</span></a>
     </div>
   </nav>
-
+  <script src="assets/js/theme.js" defer></script>
 </body>
 </html>

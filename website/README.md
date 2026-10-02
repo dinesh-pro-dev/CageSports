@@ -23,6 +23,7 @@ the header nav and sections move to multi-column grids; content is capped at 144
 - `tailwind.config.js` – design tokens (same names as the exports)
 - `assets/css/site.css` – **generated**, do not edit by hand
 - `assets/js/site.js` – review ticker (home)
+- `assets/js/theme.js` – dark / light theme toggle and persistence (all pages)
 - `assets/js/booking-data.js` – slot windows + Supabase connection, shared by the two pages below
 - `assets/js/booking.js` – activity / calendar / time-slot picker, saving the request, WhatsApp hand-off
 - `assets/js/organizer.js` – organizer sign-in and confirm / decline
@@ -31,6 +32,23 @@ the header nav and sections move to multi-column grids; content is capped at 144
 - `assets/img/` – local copies of the export images (640w and 1200w) and the logo
 - `scripts/build-config.mjs` – writes `config.js`; refuses secret keys
 - `supabase/migrations/` – database schema, permissions and booking rules
+
+## Themes
+
+Dark is the default; the sun / moon button in the Home page header switches to light and
+back. The choice is saved in the browser (`localStorage`, key `cage-sports-theme`) and
+applies to every page, including `/organizer.html`.
+
+- Colours are CSS variables generated in `tailwind.config.js`: `DARK` is the exported
+  palette, `LIGHT` lists the values that differ. Edit colours there, then `npm run build`.
+- Each page's `<head>` has a one-line script that applies the saved theme before the
+  stylesheet loads, so a light-theme visitor never sees a dark flash. Keep it above the
+  stylesheet link when adding pages.
+- Brand yellow stays as the fill for buttons and selected states in both themes. Where
+  yellow is used as text or a thin outline, light theme swaps in a deep gold so it stays
+  readable (`accent` / `accent-line` in the config).
+- Photos with captions (hero, gallery tiles, featured card) carry `theme-fixed-dark`, which
+  keeps their dark scrim and light text in both themes.
 
 ## Commands
 

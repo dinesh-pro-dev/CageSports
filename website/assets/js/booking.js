@@ -361,7 +361,7 @@
             // Booked or already started: a native disabled button takes no click, tap or keyboard focus.
             slotBtn.disabled = true;
             slotBtn.dataset.status = status;
-            slotBtn.className += 'bg-surface-elevated/40 text-[#52525b] border-dashed border-[#262626] cursor-not-allowed';
+            slotBtn.className += 'bg-surface-elevated/40 text-text-disabled border-dashed border-hairline cursor-not-allowed';
             label.classList.add('line-through');
             if (status === 'booked') {
               const tag = document.createElement('span');

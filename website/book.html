@@ -6,6 +6,7 @@
   <title>Book a Slot | Cage Sports Seerapalayam</title>
   <meta name="description" content="Request a turf slot at Cage Sports (Seerapalayam), Coimbatore. Pick your activity, date and time window – the arena desk confirms by phone or WhatsApp.">
   <meta name="theme-color" content="#111111">
+  <script>try{if(localStorage.getItem("cage-sports-theme")==="light"){document.documentElement.setAttribute("data-theme","light");document.querySelector('meta[name="theme-color"]').setAttribute("content","#f3f3f0")}}catch(e){}</script>
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,10 +18,10 @@
 <body class="bg-surface-base font-body-md text-body-md text-on-surface flex flex-col min-h-screen antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
 
   <!-- Site header: brand + CALL on mobile, adds the primary nav from tablet up -->
-  <header class="fixed top-0 inset-x-0 z-50 pt-safe bg-surface-base/95 backdrop-blur-md border-b border-[#262626] shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
+  <header class="fixed top-0 inset-x-0 z-50 pt-safe bg-surface-base/95 backdrop-blur-md border-b border-hairline shadow-header">
     <div class="max-w-site mx-auto h-16 px-4 md:px-8 lg:px-4 flex items-center justify-between">
       <a class="flex items-center gap-space-sm" href="index.html" aria-label="Cage Sports Seerapalayam – Home">
-        <img alt="" class="w-8 h-9 md:w-9 md:h-10 object-contain" src="assets/img/logo-96.png" width="75" height="96">
+        <img alt="" class="logo-mark w-8 h-9 md:w-9 md:h-10 object-contain" src="assets/img/logo-96.png" width="75" height="96">
         <span class="flex flex-col">
           <span class="font-headline-sm text-headline-sm md:text-headline-md uppercase tracking-wider text-primary-container leading-none md:leading-none">CAGE SPORTS</span>
           <span class="font-label-md text-label-md text-text-dim uppercase tracking-widest leading-tight">SEERAPALAYAM</span>
@@ -310,7 +311,7 @@
 
     <footer class="mt-space-xl lg:mt-5 max-w-site mx-auto w-full px-4 md:px-8 lg:px-4 pb-space-lg lg:pb-3 text-center">
       <div class="bg-surface-elevated/40 border border-border-subtle/40 rounded-2xl p-6 md:p-8 lg:p-4 flex flex-col items-center gap-3">
-        <img alt="" class="w-10 h-12 object-contain mb-1" src="assets/img/logo-256.png" width="199" height="256" loading="lazy">
+        <img alt="" class="logo-mark w-10 h-12 object-contain mb-1" src="assets/img/logo-256.png" width="199" height="256" loading="lazy">
         <p class="font-headline-sm text-headline-sm md:text-headline-md uppercase tracking-wide text-primary-container">CAGE SPORTS</p>
         <p class="font-label-caps text-label-caps uppercase text-on-surface">Cage Sports (Seerapalayam)</p>
         <p class="font-body-sm text-body-sm text-text-dim max-w-md">No 91/1B, Bodipalayam, Seerapalayam, Coimbatore, Tamil Nadu-641105</p>
@@ -327,7 +328,7 @@
   </main>
 
   <!-- Mobile tab bar (replaced by the header nav from tablet up) -->
-  <nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface-elevated/95 backdrop-blur-md border-t border-[#262626] shadow-[0_-2px_12px_rgba(0,0,0,0.5)] md:hidden" aria-label="Primary">
+  <nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface-elevated/95 backdrop-blur-md border-t border-hairline shadow-tabbar md:hidden" aria-label="Primary">
     <div class="flex justify-around items-center h-16 px-space-sm max-w-md mx-auto">
       <a class="flex flex-col items-center justify-center gap-space-xs flex-1 h-full min-h-[44px] text-text-dim hover:text-on-surface transition-colors" href="index.html"><span class="material-symbols-outlined text-[24px]" aria-hidden="true">sports_soccer</span><span class="font-label-caps text-label-caps uppercase">Home</span></a>
       <a class="flex flex-col items-center justify-center gap-space-xs flex-1 h-full min-h-[44px] text-text-dim hover:text-on-surface transition-colors" href="gallery.html"><span class="material-symbols-outlined text-[24px]" aria-hidden="true">photo_camera</span><span class="font-label-caps text-label-caps uppercase">Gallery</span></a>
@@ -335,6 +336,7 @@
     </div>
   </nav>
 
+  <script src="assets/js/theme.js" defer></script>
   <script src="assets/vendor/supabase.js" defer></script>
   <script src="assets/js/config.js" defer></script>
   <script src="assets/js/booking-data.js" defer></script>

@@ -4,22 +4,21 @@
 
 @layer base {
   html {
-    color-scheme: dark;
-    background-color: #111111;
+    background-color: rgb(var(--c-surface-base));
     scroll-behavior: smooth;
     /* keeps in-page anchors clear of the fixed header */
     scroll-padding-top: 5rem;
-    scrollbar-color: #333333 #111111;
+    scrollbar-color: rgb(var(--c-border-subtle)) rgb(var(--c-surface-base));
   }
 
   body {
     margin: 0;
-    background-color: #111111;
+    background-color: rgb(var(--c-surface-base));
     overscroll-behavior-y: none;
   }
 
   :focus-visible {
-    outline: 2px solid #f5d547;
+    outline: 2px solid rgb(var(--c-accent-line));
     outline-offset: 2px;
   }
 
@@ -118,6 +117,27 @@
   }
 }
 
+@layer components {
+  /* ---- Theme ----------------------------------------------------------
+     Colours come from the variables defined in tailwind.config.js. These are
+     the few things variables alone cannot switch. */
+
+  /* The logo artwork is white on transparent. */
+  html[data-theme="light"] .logo-mark {
+    filter: invert(1);
+  }
+
+  /* The toggle shows the theme it switches TO: sun in dark, moon in light. */
+  .theme-toggle .theme-icon-to-dark,
+  html[data-theme="light"] .theme-toggle .theme-icon-to-light {
+    display: none;
+  }
+
+  html[data-theme="light"] .theme-toggle .theme-icon-to-dark {
+    display: inline-block;
+  }
+}
+
 @layer utilities {
   .pb-safe {
     padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -141,4 +161,8 @@
 input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(0.85);
   cursor: pointer;
+}
+
+html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: none;
 }

@@ -6,6 +6,7 @@
   <title>Organizer Bookings | Cage Sports Seerapalayam</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#111111">
+  <script>try{if(localStorage.getItem("cage-sports-theme")==="light"){document.documentElement.setAttribute("data-theme","light");document.querySelector('meta[name="theme-color"]').setAttribute("content","#f3f3f0")}}catch(e){}</script>
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,10 +17,10 @@
 </head>
 <body class="bg-surface-base font-body-md text-body-md text-on-surface flex flex-col min-h-screen antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
 
-  <header class="fixed top-0 inset-x-0 z-50 pt-safe bg-surface-base/95 backdrop-blur-md border-b border-[#262626] shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
+  <header class="fixed top-0 inset-x-0 z-50 pt-safe bg-surface-base/95 backdrop-blur-md border-b border-hairline shadow-header">
     <div class="max-w-site mx-auto h-16 px-4 md:px-8 flex items-center justify-between gap-3">
       <a class="flex items-center gap-space-sm min-w-0" href="index.html" aria-label="Cage Sports Seerapalayam – Home">
-        <img alt="" class="w-8 h-9 md:w-9 md:h-10 object-contain shrink-0" src="assets/img/logo-96.png" width="75" height="96">
+        <img alt="" class="logo-mark w-8 h-9 md:w-9 md:h-10 object-contain shrink-0" src="assets/img/logo-96.png" width="75" height="96">
         <span class="flex flex-col min-w-0">
           <span class="font-headline-sm text-headline-sm md:text-headline-md uppercase tracking-wider text-primary-container leading-none md:leading-none">CAGE SPORTS</span>
           <span class="font-label-md text-label-md text-text-dim uppercase tracking-widest leading-tight">ORGANIZER</span>
@@ -120,6 +121,7 @@
     </div>
   </main>
 
+  <script src="assets/js/theme.js" defer></script>
   <script src="assets/vendor/supabase.js" defer></script>
   <script src="assets/js/config.js" defer></script>
   <script src="assets/js/booking-data.js" defer></script>
