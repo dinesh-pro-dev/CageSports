@@ -54,7 +54,8 @@ applies to every page, including `/organizer.html`.
 
 The map in the Home and Book Slot location sections is a static image,
 `assets/img/venue-map.png` – no map script, iframe or API key. It was stitched once from
-OpenStreetMap standard tiles at zoom 16 and is centred exactly on the turf
+OpenStreetMap standard tiles at zoom 13 (wide enough to show the Coimbatore Bypass and the
+neighbouring villages) and is centred exactly on the turf
 (10.8852326, 76.9746995), so the pin drawn at the centre of the preview is on the venue at
 every screen size.
 
