@@ -127,13 +127,10 @@
     filter: invert(1);
   }
 
-  /* Google's embedded map is always drawn light. In the dark theme it is colour-inverted
-     (hue kept) so it sits with the rest of the page; it stays fully interactive. */
-  .map-embed iframe {
-    border: 0;
-  }
-
-  html:not([data-theme="light"]) .map-embed iframe {
+  /* The venue map is a static OpenStreetMap image, drawn light. In the dark theme it is
+     colour-inverted (hue kept) so it sits with the rest of the page. The pin, the label and
+     the attribution are separate elements and are not affected. */
+  html:not([data-theme="light"]) .map-preview .map-image {
     filter: invert(0.92) hue-rotate(180deg) brightness(0.95) contrast(0.9);
   }
 

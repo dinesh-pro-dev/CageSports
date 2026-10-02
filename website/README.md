@@ -50,6 +50,20 @@ applies to every page, including `/organizer.html`.
 - Photos with captions (hero, gallery tiles, featured card) carry `theme-fixed-dark`, which
   keeps their dark scrim and light text in both themes.
 
+## Venue map
+
+The map in the Home and Book Slot location sections is a static image,
+`assets/img/venue-map.png` – no map script, iframe or API key. It was stitched once from
+OpenStreetMap standard tiles at zoom 16 and is centred exactly on the turf
+(10.8852326, 76.9746995), so the pin drawn at the centre of the preview is on the venue at
+every screen size.
+
+- Map data © OpenStreetMap contributors (ODbL). The "© OpenStreetMap contributors" credit
+  on the preview is required by the licence – keep it visible if the section is restyled.
+- The whole preview links to the Cage Sports place listing on Google Maps, as does the
+  GET DIRECTIONS button. The URL appears twice in each of `index.html` and `book.html`.
+- If the venue moves, the image has to be regenerated for the new coordinates.
+
 ## Commands
 
 ```sh
