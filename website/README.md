@@ -13,9 +13,24 @@ are not loaded by the site.
 | `gallery.html`   | Gallery (from `gallery_mobile_revised`)                        |
 | `book.html`      | Book Slot (from `book_slot_mobile_revised`)                    |
 | `organizer.html` | Password-protected bookings page for the arena desk. Not linked from the public navigation – open it directly at `/organizer.html`. |
+| `404.html`       | "Page not found" page with links to Home, Gallery and Book Slot. Uses root-absolute paths (`/assets/…`) because hosts serve it at any missing address. |
 
 The mobile layouts follow the exports. From 768px the bottom tab bar is replaced by
 the header nav and sections move to multi-column grids; content is capped at 1440px.
+
+## Search and sharing
+
+- Each public page has its own title, description, canonical URL and Open Graph / Twitter
+  preview tags. The preview tags repeat the page's title and description – change them together.
+- `sitemap.xml` lists the public pages; `robots.txt` points to it. `organizer.html` and
+  `404.html` carry a `noindex` tag and are left out of the sitemap.
+- **The site address is temporary.** Canonical URLs, preview tags, `sitemap.xml` and
+  `robots.txt` need a full address and currently use `https://cagesports.netlify.app`. If the
+  site moves to another host or domain, replace it everywhere:
+
+  ```sh
+  sed -i 's#https://cagesports.netlify.app#https://www.new-domain.com#g' *.html sitemap.xml robots.txt README.md
+  ```
 
 ## Structure
 

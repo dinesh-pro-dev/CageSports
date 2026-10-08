@@ -1,0 +1,7 @@
+# organizer.html is kept out of search by its own <meta name="robots" content="noindex, nofollow">
+# and by being left out of the sitemap. Do not add a Disallow rule for it: crawlers that are
+# blocked from a page cannot read its noindex tag, and the address could then still be listed.
+User-agent: *
+Disallow:
+
+Sitemap: https://cagesports.netlify.app/sitemap.xml
