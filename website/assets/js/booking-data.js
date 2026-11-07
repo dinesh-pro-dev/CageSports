@@ -1,4 +1,4 @@
-/* Shared by the Book Slot page and the organizer page: slot windows and the Supabase connection. */
+/* Slot windows and Supabase connection for customer booking. */
 (function initBookingData() {
   // Preferred windows only – the arena desk confirms real availability.
   const SLOT_WINDOWS = [

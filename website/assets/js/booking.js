@@ -9,7 +9,7 @@
   ];
   const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-  // Slot windows and the Supabase connection live in booking-data.js (shared with the organizer page).
+  // Slot windows and the Supabase connection live in booking-data.js.
   const { SLOT_WINDOWS, slotStartTime } = window.CageBooking;
   // Visitors always use the public (anon) role; no session is kept on this page.
   const backend = window.CageBooking.createClient({
@@ -34,8 +34,10 @@
 
   let today = readToday();
 
+  let currentSubmitLabel = 'CONFIRM & BOOK SLOT';
+
   const state = {
-    activity: 'Birthday parties (Inquiry)',
+    activity: '5 a-side football',
     date: null, // { iso, day, month, year, weekday }
     slot: null, // one of SLOT_WINDOWS[].slots
     customTime: '',
@@ -156,7 +158,7 @@
       badge.textContent = 'NO DATE SELECTED';
       swap(badge, ['text-primary-container', 'font-semibold'], ['text-text-dim']);
       $('summary-date').textContent = 'None';
-      hint.textContent = 'Select a match date to view and request available time windows.';
+      hint.textContent = 'Select a match date to view available time slots.';
       hint.classList.remove('text-primary-container');
       return;
     }
@@ -222,7 +224,7 @@
   }
 
   // Confirmed bookings from the shared database, as "YYYY-MM-DD|HH:MM". Pending requests are
-  // never in here: only an organizer's confirmation makes a slot booked.
+  // never in here: only confirmed bookings make a slot booked.
   let bookedSlots = new Set();
   // 'loading' until the first answer; 'ready' once booked slots are known; 'unavailable' if they
   // could not be loaded (or the site is not connected to Supabase yet).
@@ -233,7 +235,7 @@
   }
 
   // 'open'   – can be requested
-  // 'booked' – an organizer has confirmed someone for this date + window
+  // 'booked' – a confirmed booking exists for this date + window
   // 'past'   – the window has already started (today depends on the clock; future dates never are)
   function slotStatus(slotText, now = new Date()) {
     if (!state.date) return 'past';
@@ -429,6 +431,34 @@
       slotDisplay.textContent = 'NONE SELECTED';
       summarySlot.textContent = 'None';
     }
+
+    updateBookingMode();
+  }
+
+  function updateBookingMode() {
+    const isCustom = Boolean(state.customTime);
+    const modeBadge = $('slot-mode-badge');
+    const modeDesc = $('slot-mode-description');
+    const summaryType = $('summary-booking-type');
+    const policyNotice = $('booking-policy-notice');
+    const submitLabel = $('submit-btn-label') || (submitBtn && submitBtn.querySelector('span:last-child'));
+
+    if (modeBadge) modeBadge.textContent = isCustom ? 'Inquiry Mode' : 'Instant Booking';
+    if (modeDesc) {
+      modeDesc.textContent = isCustom
+        ? 'Custom time windows require confirmation from the arena desk. Enter your preferred hours above.'
+        : 'Select your match time window. Standard slots are confirmed and reserved immediately in our system.';
+    }
+    if (summaryType) summaryType.textContent = isCustom ? 'Inquiry' : 'Instant Booking';
+    if (policyNotice) {
+      policyNotice.textContent = isCustom
+        ? 'Custom time windows are saved as pending inquiries. The arena desk will review your timing and reach out via WhatsApp/Phone.'
+        : 'Standard slots are confirmed and reserved immediately in our system upon submission. A pre-filled WhatsApp message will open so you can notify the arena desk.';
+    }
+    currentSubmitLabel = isCustom ? 'SEND INQUIRY TO DESK' : 'CONFIRM & BOOK SLOT';
+    if (!saving && submitLabel) {
+      submitLabel.textContent = currentSubmitLabel;
+    }
   }
 
   customInput.addEventListener('input', () => {
@@ -519,9 +549,12 @@
       ? `${state.date.weekday}, ${state.date.day} ${MONTHS[state.date.month]} ${state.date.year}`
       : 'To be discussed';
     const time = state.customTime || state.slot || 'To be discussed';
+    const intro = state.customTime
+      ? 'Hi Cage Sports Desk, I would like to inquire about a custom booking.'
+      : 'Hi Cage Sports Desk, I have booked a slot online.';
 
     const lines = [
-      'Hi Cage Sports Desk, I would like to request a slot confirmation.',
+      intro,
       '',
       `Activity: ${state.activity}`,
       `Date: ${date}`,
@@ -552,8 +585,7 @@
   }
 
   const submitBtn = form.querySelector('button[type="submit"]');
-  const submitLabel = submitBtn.querySelector('span:last-child');
-  const submitLabelText = submitLabel.textContent;
+  const submitLabel = $('submit-btn-label') || submitBtn.querySelector('span:last-child');
   const savedBanner = $('booking-confirmation-banner');
   const errorBanner = $('booking-error-banner');
   let saving = false;
@@ -565,7 +597,7 @@
     submitBtn.setAttribute('aria-busy', String(on));
     submitBtn.classList.toggle('opacity-60', on);
     submitBtn.classList.toggle('cursor-wait', on);
-    submitLabel.textContent = on ? 'SAVING REQUEST…' : submitLabelText;
+    submitLabel.textContent = on ? 'SAVING…' : currentSubmitLabel;
   }
 
   function showBanner(banner) {
@@ -582,13 +614,26 @@
   function showSaveError(message, whatsAppUrl) {
     $('booking-error-message').textContent = message;
     $('booking-error-whatsapp-link').href = whatsAppUrl;
+    const bookAnotherBtn = $('book-another-btn');
+    if (bookAnotherBtn) bookAnotherBtn.classList.add('hidden');
     state.submitted = false;
     renderSteps();
     showBanner(errorBanner);
   }
 
-  function showSaved(whatsAppUrl) {
+  function showSaved(whatsAppUrl, status = 'confirmed') {
     $('booking-whatsapp-link').href = whatsAppUrl;
+    const titleEl = $('booking-confirmation-title');
+    const textEl = $('booking-confirmation-text');
+    if (status === 'confirmed') {
+      if (titleEl) titleEl.textContent = 'Slot Confirmed & Reserved!';
+      if (textEl) textEl.textContent = 'Your slot is confirmed and reserved immediately in our system! WhatsApp has been opened with your booking details so you can notify the desk.';
+    } else {
+      if (titleEl) titleEl.textContent = 'Inquiry Received – Pending Desk Confirmation';
+      if (textEl) textEl.textContent = 'Your custom inquiry has been received and saved as pending. WhatsApp has been opened with your details so you can coordinate with the desk.';
+    }
+    const bookAnotherBtn = $('book-another-btn');
+    if (bookAnotherBtn) bookAnotherBtn.classList.remove('hidden');
     state.submitted = true;
     renderSteps();
     showBanner(savedBanner);
@@ -598,6 +643,20 @@
     event.preventDefault();
     if (saving) return;
     if (!form.reportValidity()) return;
+
+    // Both concrete bookings and custom-time inquiries require a valid calendar date.
+    if (!state.date) {
+      $('date-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      showSaveError('Please select a booking date on the calendar.', buildWhatsAppUrl());
+      return;
+    }
+
+    // A standard slot or custom time window is required.
+    if (!state.slot && !state.customTime) {
+      $('time-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      showSaveError('Please select a time slot or specify a custom time window.', buildWhatsAppUrl());
+      return;
+    }
 
     // Never send a window that has started since it was picked.
     if (syncClock()) {
@@ -616,49 +675,125 @@
 
     // Pressing the button again with the same details re-opens WhatsApp without storing a duplicate.
     if (requestKey === lastSavedRequest) {
-      window.open(url, '_blank', 'noopener');
-      showSaved(url);
+      try {
+        window.open(url, '_blank', 'noopener');
+      } catch {}
+      showSaved(url, request.custom_time ? 'pending' : 'confirmed');
       return;
     }
-
-    // Browsers only allow a new tab to be opened during the tap itself, so reserve it now
-    // and point it at WhatsApp once the request is safely stored.
-    const whatsAppTab = window.open('', '_blank');
-    const closeTab = () => {
-      if (whatsAppTab && !whatsAppTab.closed) whatsAppTab.close();
-    };
 
     showBanner(null);
     setSaving(true);
     try {
+      // Fast local check against already-loaded booked slots
       await loadBookedSlots();
       if (request.slot_start && bookedSlots.has(`${request.booking_date}|${request.slot_start}`)) {
-        closeTab();
         showSaveError('That slot has just been booked, so your request was not saved. Please choose another time window.', url);
         return;
       }
 
-      const { error } = await backend
-        .from('booking_requests')
-        .insert(request)
+      // Atomic submission via secure PostgreSQL function
+      const { data, error } = await backend
+        .rpc('submit_instant_booking', {
+          p_activity: request.activity,
+          p_booking_date: request.booking_date,
+          p_slot_start: request.slot_start,
+          p_custom_time: request.custom_time,
+          p_customer_name: request.customer_name,
+          p_customer_phone: request.customer_phone,
+          p_team: request.team,
+          p_notes: request.notes
+        })
         .abortSignal(AbortSignal.timeout(15000));
-      if (error) throw error;
+
+      if (error) {
+        if (error.message && error.message.includes('slot_already_booked')) {
+          await loadBookedSlots();
+          showSaveError('That slot has just been booked, so your request was not saved. Please choose another time window.', url);
+          return;
+        }
+        if (error.message && (error.message.includes('booking_date_in_past') || error.message.includes('booking_slot_in_past'))) {
+          showSaveError('The selected booking date or slot has already passed. Please choose an upcoming window.', url);
+          return;
+        }
+        throw error;
+      }
+
+      // Verify that the function returned a valid booking response
+      if (!data || !data.id || !data.status) {
+        throw new Error('Invalid response received from booking service.');
+      }
+
+      lastSavedRequest = requestKey;
+
+      // If slot was instantly confirmed, update the slot grid in background
+      if (data.status === 'confirmed') {
+        loadBookedSlots();
+      }
+
+      // Open WhatsApp click-to-chat strictly after successful database insertion.
+      // Handled with popup-blocking fallback so a blocked popup never reports failure.
+      try {
+        const whatsAppWindow = window.open(url, '_blank', 'noopener');
+        if (!whatsAppWindow || whatsAppWindow.closed || typeof whatsAppWindow.closed === 'undefined') {
+          console.info('WhatsApp popup was blocked by browser. User can tap the link in the confirmation banner.');
+        }
+      } catch (openErr) {
+        console.warn('Unable to open WhatsApp window automatically:', openErr);
+      }
+
+      showSaved(url, data.status);
     } catch (error) {
       console.error('Could not save the booking request:', error);
-      closeTab();
       showSaveError('We couldn’t save your request, so it has not been recorded or sent. Please check your connection and try again.', url);
       return;
     } finally {
       setSaving(false);
     }
-
-    lastSavedRequest = requestKey;
-    if (whatsAppTab && !whatsAppTab.closed) {
-      whatsAppTab.opener = null;
-      whatsAppTab.location.replace(url);
-    }
-    showSaved(url);
   });
+
+  const bookAnotherBtn = $('book-another-btn');
+  if (bookAnotherBtn) {
+    bookAnotherBtn.addEventListener('click', async () => {
+      // 1. Hide the previous success banner
+      showBanner(null);
+      bookAnotherBtn.classList.add('hidden');
+
+      // 2. Reset customer fields
+      const nameInput = $('player-name');
+      const phoneInput = $('player-phone');
+      const teamInput = $('player-team');
+      const notesInput = $('player-notes');
+
+      if (nameInput) nameInput.value = '';
+      if (phoneInput) phoneInput.value = '';
+      if (teamInput) teamInput.value = '';
+      if (notesInput) notesInput.value = '';
+      if (customInput) customInput.value = '';
+
+      // 3. Clear date and time slot state, preserve current activity selection
+      state.date = null;
+      state.slot = null;
+      state.customTime = '';
+      state.submitted = false;
+      lastSavedRequest = '';
+
+      // 4. Reset UI components, calendar, and booking summary
+      renderCalendar();
+      renderDateLabels();
+      renderSlots();
+      renderSteps();
+
+      // 5. Refresh booked slots from Supabase before allowing another booking
+      await loadBookedSlots();
+
+      // 6. Scroll customer back to the activity/date selection section
+      const target = $('date-section') || $('activity-section');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
 
   renderActivities();
   renderCalendar();
