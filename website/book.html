@@ -192,8 +192,9 @@
                   <label class="font-label-caps text-[11px] uppercase text-text-dim tracking-wide" for="custom-time-input">Or Custom Window Note (Optional)</label>
                   <div class="relative flex items-center">
                     <span class="material-symbols-outlined absolute left-3 text-text-dim text-[16px] pointer-events-none" aria-hidden="true">schedule</span>
-                    <input class="w-full min-h-[44px] bg-surface-elevated text-on-surface pl-9 pr-space-md py-space-xs rounded-lg font-body-sm text-[13px] focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container border border-border-subtle placeholder:text-text-dim/60" id="custom-time-input" placeholder="e.g. 7:30 PM - 9:30 PM (2 hrs)" type="text" maxlength="120" autocomplete="off">
+                    <input class="w-full min-h-[44px] bg-surface-elevated text-on-surface pl-9 pr-space-md py-space-xs rounded-lg font-body-sm text-[13px] focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container border border-border-subtle placeholder:text-text-dim/60 transition-colors" id="custom-time-input" placeholder="e.g. 7:30 PM - 9:30 PM (2 hrs)" type="text" maxlength="120" autocomplete="off">
                   </div>
+                  <p class="hidden text-status-booked font-body-sm text-[12px] leading-tight mt-1 items-center gap-1" id="custom-time-input-error" role="alert"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">info</span><span class="error-text"></span></p>
                 </div>
               </div>
             </section>
@@ -218,21 +219,23 @@
                 </div>
               </div>
 
-              <form class="flex flex-col space-y-4" id="reservation-form">
+              <form class="flex flex-col space-y-4" id="reservation-form" novalidate>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div class="flex flex-col space-y-1">
                     <label class="font-label-caps text-label-caps uppercase text-on-surface tracking-wide flex items-center justify-between" for="player-name"><span>Full Name *</span><span class="text-[10px] text-text-dim normal-case">Required</span></label>
                     <div class="relative flex items-center">
                       <span class="material-symbols-outlined absolute left-3 text-text-dim text-[18px] pointer-events-none" aria-hidden="true">person</span>
-                      <input class="w-full min-h-[44px] bg-surface-elevated text-on-surface pl-10 pr-space-md py-space-xs rounded-lg font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container border border-border-subtle placeholder:text-text-dim" id="player-name" name="name" placeholder="e.g. Arun Kumar" required type="text" maxlength="120" autocomplete="name">
+                      <input class="w-full min-h-[44px] bg-surface-elevated text-on-surface pl-10 pr-space-md py-space-xs rounded-lg font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container border border-border-subtle placeholder:text-text-dim transition-colors" id="player-name" name="name" placeholder="e.g. Arun Kumar" required type="text" maxlength="80" autocomplete="name">
                     </div>
+                    <p class="hidden text-status-booked font-body-sm text-[12px] leading-tight mt-1 items-center gap-1" id="player-name-error" role="alert"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">info</span><span class="error-text"></span></p>
                   </div>
                   <div class="flex flex-col space-y-1">
                     <label class="font-label-caps text-label-caps uppercase text-on-surface tracking-wide flex items-center justify-between" for="player-phone"><span>Phone / WhatsApp *</span><span class="text-[10px] text-text-dim normal-case">Required</span></label>
                     <div class="relative flex items-center">
                       <span class="material-symbols-outlined absolute left-3 text-text-dim text-[18px] pointer-events-none" aria-hidden="true">call</span>
-                      <input class="w-full min-h-[44px] bg-surface-elevated text-on-surface pl-10 pr-space-md py-space-xs rounded-lg font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container border border-border-subtle placeholder:text-text-dim" id="player-phone" name="phone" placeholder="e.g. 9876543210" required type="tel" inputmode="tel" autocomplete="tel" pattern="[0-9+ \-]{10,16}" title="Enter a 10-digit phone number">
+                      <input class="w-full min-h-[44px] bg-surface-elevated text-on-surface pl-10 pr-space-md py-space-xs rounded-lg font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container border border-border-subtle placeholder:text-text-dim transition-colors" id="player-phone" name="phone" placeholder="e.g. 9876543210" required type="tel" inputmode="numeric" autocomplete="tel" maxlength="10" pattern="[6-9][0-9]{9}" title="Enter a 10-digit Indian mobile number starting with 6, 7, 8, or 9">
                     </div>
+                    <p class="hidden text-status-booked font-body-sm text-[12px] leading-tight mt-1 items-center gap-1" id="player-phone-error" role="alert"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">info</span><span class="error-text"></span></p>
                   </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -240,15 +243,17 @@
                     <label class="font-label-caps text-label-caps uppercase text-text-dim tracking-wide" for="player-team">Team / Squad Name (Optional)</label>
                     <div class="relative flex items-center">
                       <span class="material-symbols-outlined absolute left-3 text-text-dim text-[18px] pointer-events-none" aria-hidden="true">shield</span>
-                      <input class="w-full min-h-[44px] bg-surface-elevated text-on-surface pl-10 pr-space-md py-space-xs rounded-lg font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container border border-border-subtle placeholder:text-text-dim" id="player-team" name="team" placeholder="e.g. Seerapalayam Strikers" type="text" maxlength="120" autocomplete="off">
+                      <input class="w-full min-h-[44px] bg-surface-elevated text-on-surface pl-10 pr-space-md py-space-xs rounded-lg font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container border border-border-subtle placeholder:text-text-dim transition-colors" id="player-team" name="team" placeholder="e.g. Seerapalayam Strikers" type="text" maxlength="80" autocomplete="off">
                     </div>
+                    <p class="hidden text-status-booked font-body-sm text-[12px] leading-tight mt-1 items-center gap-1" id="player-team-error" role="alert"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">info</span><span class="error-text"></span></p>
                   </div>
                   <div class="flex flex-col space-y-1">
                     <label class="font-label-caps text-label-caps uppercase text-text-dim tracking-wide" for="player-notes">Preferred Notes / Special Requests</label>
                     <div class="relative flex items-center">
                       <span class="material-symbols-outlined absolute left-3 text-text-dim text-[18px] pointer-events-none" aria-hidden="true">description</span>
-                      <input class="w-full min-h-[44px] bg-surface-elevated text-on-surface pl-10 pr-space-md py-space-xs rounded-lg font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container border border-border-subtle placeholder:text-text-dim" id="player-notes" name="notes" placeholder="e.g. Need football bibs" type="text" maxlength="500" autocomplete="off">
+                      <input class="w-full min-h-[44px] bg-surface-elevated text-on-surface pl-10 pr-space-md py-space-xs rounded-lg font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container border border-border-subtle placeholder:text-text-dim transition-colors" id="player-notes" name="notes" placeholder="e.g. Need football bibs" type="text" maxlength="500" autocomplete="off">
                     </div>
+                    <p class="hidden text-status-booked font-body-sm text-[12px] leading-tight mt-1 items-center gap-1" id="player-notes-error" role="alert"><span class="material-symbols-outlined text-[14px]" aria-hidden="true">info</span><span class="error-text"></span></p>
                   </div>
                 </div>
                 <div class="bg-surface-elevated/70 p-3 rounded-lg flex items-start gap-space-xs border border-border-subtle/40">

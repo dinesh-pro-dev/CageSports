@@ -21,6 +21,183 @@
   const form = $('reservation-form');
   if (!daysGrid || !form) return;
 
+  const nameInput = $('player-name');
+  const phoneInput = $('player-phone');
+  const teamInput = $('player-team');
+  const notesInput = $('player-notes');
+  const customInput = $('custom-time-input');
+
+  function setFieldInlineError(fieldId, errorMsg) {
+    const input = $(fieldId);
+    const errorEl = $(`${fieldId}-error`);
+    if (!input) return;
+    if (errorMsg) {
+      input.classList.remove('border-border-subtle', 'focus:ring-primary-container', 'focus:border-primary-container');
+      input.classList.add('border-status-booked', 'focus:ring-status-booked', 'focus:border-status-booked');
+      input.setAttribute('aria-invalid', 'true');
+      input.setAttribute('aria-describedby', `${fieldId}-error`);
+      if (errorEl) {
+        const textSpan = errorEl.querySelector('.error-text') || errorEl;
+        textSpan.textContent = errorMsg;
+        errorEl.classList.remove('hidden');
+        errorEl.classList.add('flex');
+      }
+    } else {
+      input.classList.remove('border-status-booked', 'focus:ring-status-booked', 'focus:border-status-booked');
+      input.classList.add('border-border-subtle', 'focus:ring-primary-container', 'focus:border-primary-container');
+      input.removeAttribute('aria-invalid');
+      input.removeAttribute('aria-describedby');
+      if (errorEl) {
+        errorEl.classList.add('hidden');
+        errorEl.classList.remove('flex');
+        const textSpan = errorEl.querySelector('.error-text') || errorEl;
+        textSpan.textContent = '';
+      }
+    }
+  }
+
+  function validateName(raw) {
+    const val = (raw || '').trim().replace(/\s+/g, ' ');
+    if (!val) return { valid: false, message: 'Full name is required.' };
+    if (val.length < 2) return { valid: false, message: 'Full name must be at least 2 characters.' };
+    if (val.length > 80) return { valid: false, message: 'Full name must not exceed 80 characters.' };
+    if (/\d/.test(val)) return { valid: false, message: 'Full name cannot contain numbers.' };
+    if (!/\p{L}/u.test(val)) return { valid: false, message: 'Full name must contain at least one letter.' };
+    if (!/^[\p{L}\p{M}]+(?:['’\-][\p{L}\p{M}]+)*(?: [\p{L}\p{M}]+(?:['’\-][\p{L}\p{M}]+)*)*$/u.test(val)) {
+      return { valid: false, message: 'Full name can only contain letters, spaces, hyphens, and apostrophes.' };
+    }
+    return { valid: true, value: val };
+  }
+
+  function validatePhone(raw) {
+    const val = (raw || '').trim();
+    if (!val) return { valid: false, message: 'Phone / WhatsApp number is required.' };
+    if (/[^0-9]/.test(val)) return { valid: false, message: 'Phone number must contain exactly 10 digits (no spaces, symbols, or letters).' };
+    if (val.length !== 10) return { valid: false, message: 'Phone number must be exactly 10 digits.' };
+    if (!/^[6-9]/.test(val)) return { valid: false, message: 'Indian mobile numbers must start with 6, 7, 8, or 9.' };
+    return { valid: true, value: val };
+  }
+
+  function validateTeam(raw) {
+    const val = (raw || '').trim().replace(/\s+/g, ' ');
+    if (!val) return { valid: true, value: '' };
+    if (val.length > 80) return { valid: false, message: 'Team name must not exceed 80 characters.' };
+    if (!/^[\p{L}\p{M}0-9\s'-]+$/u.test(val)) {
+      return { valid: false, message: 'Team name can only contain letters, numbers, spaces, hyphens, and apostrophes.' };
+    }
+    return { valid: true, value: val };
+  }
+
+  function validateNotes(raw) {
+    const val = (raw || '').trim();
+    if (!val) return { valid: true, value: '' };
+    if (val.length > 500) return { valid: false, message: 'Notes must not exceed 500 characters.' };
+    if (/[\x00-\x08\x0B\x0C\x0E-\x1F]/.test(val)) {
+      return { valid: false, message: 'Notes contain invalid control characters.' };
+    }
+    return { valid: true, value: val };
+  }
+
+  function validateCustomTime(raw) {
+    const val = (raw || '').trim().replace(/\s+/g, ' ');
+    if (!val) return { valid: true, value: '' };
+    if (val.length < 3) return { valid: false, message: 'Custom window note must be at least 3 characters.' };
+    if (val.length > 120) return { valid: false, message: 'Custom window note must not exceed 120 characters.' };
+    if (!/^[a-zA-Z0-9\s:\-.,()\/+]+$/.test(val)) {
+      return { valid: false, message: 'Custom window note contains invalid characters.' };
+    }
+    return { valid: true, value: val };
+  }
+
+  if (nameInput) {
+    nameInput.addEventListener('blur', () => {
+      const res = validateName(nameInput.value);
+      if (!res.valid) {
+        setFieldInlineError('player-name', res.message);
+      } else {
+        setFieldInlineError('player-name', '');
+        nameInput.value = res.value;
+      }
+    });
+    nameInput.addEventListener('input', () => {
+      if (nameInput.getAttribute('aria-invalid') === 'true') {
+        const res = validateName(nameInput.value);
+        if (res.valid) setFieldInlineError('player-name', '');
+      }
+    });
+  }
+
+  if (phoneInput) {
+    phoneInput.addEventListener('blur', () => {
+      const res = validatePhone(phoneInput.value);
+      if (!res.valid) {
+        setFieldInlineError('player-phone', res.message);
+      } else {
+        setFieldInlineError('player-phone', '');
+        phoneInput.value = res.value;
+      }
+    });
+    phoneInput.addEventListener('input', () => {
+      if (phoneInput.getAttribute('aria-invalid') === 'true') {
+        const res = validatePhone(phoneInput.value);
+        if (res.valid) setFieldInlineError('player-phone', '');
+      }
+    });
+  }
+
+  if (teamInput) {
+    teamInput.addEventListener('blur', () => {
+      const res = validateTeam(teamInput.value);
+      if (!res.valid) {
+        setFieldInlineError('player-team', res.message);
+      } else {
+        setFieldInlineError('player-team', '');
+        if (teamInput.value) teamInput.value = res.value;
+      }
+    });
+    teamInput.addEventListener('input', () => {
+      if (teamInput.getAttribute('aria-invalid') === 'true') {
+        const res = validateTeam(teamInput.value);
+        if (res.valid) setFieldInlineError('player-team', '');
+      }
+    });
+  }
+
+  if (notesInput) {
+    notesInput.addEventListener('blur', () => {
+      const res = validateNotes(notesInput.value);
+      if (!res.valid) {
+        setFieldInlineError('player-notes', res.message);
+      } else {
+        setFieldInlineError('player-notes', '');
+        if (notesInput.value) notesInput.value = res.value;
+      }
+    });
+    notesInput.addEventListener('input', () => {
+      if (notesInput.getAttribute('aria-invalid') === 'true') {
+        const res = validateNotes(notesInput.value);
+        if (res.valid) setFieldInlineError('player-notes', '');
+      }
+    });
+  }
+
+  if (customInput) {
+    customInput.addEventListener('blur', () => {
+      if (state.customTime) {
+        const res = validateCustomTime(customInput.value);
+        if (!res.valid) {
+          setFieldInlineError('custom-time-input', res.message);
+        } else {
+          setFieldInlineError('custom-time-input', '');
+          customInput.value = res.value;
+          state.customTime = res.value;
+        }
+      } else {
+        setFieldInlineError('custom-time-input', '');
+      }
+    });
+  }
+
   // The browser's local clock is read at runtime (and re-read as time passes),
   // so "today" and "already started" are never fixed at page load.
   function readToday() {
@@ -212,7 +389,6 @@
 
   /* ---- Step 3: time ----------------------------------------------- */
 
-  const customInput = $('custom-time-input');
   const ALL_SLOTS = SLOT_WINDOWS.flatMap((group) => group.slots);
 
   // When a window begins on the given date, e.g. "11:00 PM - 12:00 AM" -> 23:00 that day.
@@ -464,6 +640,10 @@
   customInput.addEventListener('input', () => {
     state.customTime = customInput.value.trim();
     if (state.customTime) state.slot = null;
+    if (customInput.getAttribute('aria-invalid') === 'true') {
+      const res = validateCustomTime(customInput.value);
+      if (res.valid) setFieldInlineError('custom-time-input', '');
+    }
     renderSlots();
     renderSteps();
   });
@@ -544,7 +724,11 @@
   /* ---- Step 4: send the request to the arena desk ------------------ */
 
   function buildWhatsAppUrl() {
-    const value = (id) => $(id).value.trim();
+    const nameVal = nameInput ? nameInput.value.trim().replace(/\s+/g, ' ') : '';
+    const phoneVal = phoneInput ? phoneInput.value.trim() : '';
+    const teamVal = teamInput ? teamInput.value.trim().replace(/\s+/g, ' ') : '';
+    const notesVal = notesInput ? notesInput.value.trim() : '';
+
     const date = state.date
       ? `${state.date.weekday}, ${state.date.day} ${MONTHS[state.date.month]} ${state.date.year}`
       : 'To be discussed';
@@ -559,11 +743,11 @@
       `Activity: ${state.activity}`,
       `Date: ${date}`,
       `Time: ${time}`,
-      `Name: ${value('player-name')}`,
-      `Phone: ${value('player-phone')}`
+      `Name: ${nameVal}`,
+      `Phone: ${phoneVal}`
     ];
-    if (value('player-team')) lines.push(`Team: ${value('player-team')}`);
-    if (value('player-notes')) lines.push(`Notes: ${value('player-notes')}`);
+    if (teamVal) lines.push(`Team: ${teamVal}`);
+    if (notesVal) lines.push(`Notes: ${notesVal}`);
 
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
   }
@@ -571,16 +755,21 @@
   // What gets stored. Column names match public.booking_requests; the database sets
   // status = 'pending' itself and visitors have no permission to send anything else.
   function buildRequest() {
-    const value = (id) => $(id).value.trim();
+    const nameRes = validateName(nameInput ? nameInput.value : '');
+    const phoneRes = validatePhone(phoneInput ? phoneInput.value : '');
+    const teamRes = validateTeam(teamInput ? teamInput.value : '');
+    const notesRes = validateNotes(notesInput ? notesInput.value : '');
+    const customRes = validateCustomTime(customInput ? customInput.value : '');
+
     return {
       activity: state.activity,
       booking_date: state.date ? state.date.iso : null,
       slot_start: state.slot && !state.customTime ? slotStartTime(state.slot) : null,
-      custom_time: state.customTime || null,
-      customer_name: value('player-name'),
-      customer_phone: value('player-phone'),
-      team: value('player-team') || null,
-      notes: value('player-notes') || null
+      custom_time: (state.customTime && customRes.valid && customRes.value) ? customRes.value : null,
+      customer_name: nameRes.valid ? nameRes.value : (nameInput ? nameInput.value.trim() : ''),
+      customer_phone: phoneRes.valid ? phoneRes.value : (phoneInput ? phoneInput.value.trim() : ''),
+      team: (teamRes.valid && teamRes.value) ? teamRes.value : null,
+      notes: (notesRes.valid && notesRes.value) ? notesRes.value : null
     };
   }
 
@@ -642,7 +831,79 @@
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (saving) return;
-    if (!form.reportValidity()) return;
+    showBanner(null);
+
+    // Validate customer inputs
+    const nameRes = validateName(nameInput ? nameInput.value : '');
+    const phoneRes = validatePhone(phoneInput ? phoneInput.value : '');
+    const teamRes = validateTeam(teamInput ? teamInput.value : '');
+    const notesRes = validateNotes(notesInput ? notesInput.value : '');
+    const customRes = validateCustomTime(customInput ? customInput.value : '');
+
+    let firstInvalid = null;
+
+    if (!nameRes.valid) {
+      setFieldInlineError('player-name', nameRes.message);
+      if (!firstInvalid) firstInvalid = nameInput;
+    } else {
+      setFieldInlineError('player-name', '');
+      if (nameInput) nameInput.value = nameRes.value;
+    }
+
+    if (!phoneRes.valid) {
+      setFieldInlineError('player-phone', phoneRes.message);
+      if (!firstInvalid) firstInvalid = phoneInput;
+    } else {
+      setFieldInlineError('player-phone', '');
+      if (phoneInput) phoneInput.value = phoneRes.value;
+    }
+
+    if (!teamRes.valid) {
+      setFieldInlineError('player-team', teamRes.message);
+      if (!firstInvalid) firstInvalid = teamInput;
+    } else {
+      setFieldInlineError('player-team', '');
+      if (teamInput && teamInput.value) teamInput.value = teamRes.value;
+    }
+
+    if (!notesRes.valid) {
+      setFieldInlineError('player-notes', notesRes.message);
+      if (!firstInvalid) firstInvalid = notesInput;
+    } else {
+      setFieldInlineError('player-notes', '');
+      if (notesInput && notesInput.value) notesInput.value = notesRes.value;
+    }
+
+    if (state.customTime && !customRes.valid) {
+      setFieldInlineError('custom-time-input', customRes.message);
+      if (!firstInvalid) firstInvalid = customInput;
+    } else {
+      setFieldInlineError('custom-time-input', '');
+      if (customInput && customInput.value) customInput.value = customRes.value;
+    }
+
+    if (firstInvalid) {
+      firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstInvalid.focus();
+      return;
+    }
+
+    // Validate activity selection against supported whitelist
+    const VALID_ACTIVITIES = new Set([
+      '5 a-side football',
+      '6 a-side football',
+      '7 a-side football',
+      'Indoor cricket',
+      'Softball batting cage',
+      'Birthday parties (Inquiry)',
+      'Corporate & school events (Inquiry)'
+    ]);
+
+    if (!state.activity || !VALID_ACTIVITIES.has(state.activity)) {
+      $('activity-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      showSaveError('Please select a valid sport or event activity from the list.', buildWhatsAppUrl());
+      return;
+    }
 
     // Both concrete bookings and custom-time inquiries require a valid calendar date.
     if (!state.date) {
@@ -707,13 +968,59 @@
         .abortSignal(AbortSignal.timeout(15000));
 
       if (error) {
-        if (error.message && error.message.includes('slot_already_booked')) {
+        const errStr = `${error.message || ''} ${error.details || ''} ${error.hint || ''}`;
+        if (errStr.includes('slot_already_booked')) {
           await loadBookedSlots();
           showSaveError('That slot has just been booked, so your request was not saved. Please choose another time window.', url);
           return;
         }
-        if (error.message && (error.message.includes('booking_date_in_past') || error.message.includes('booking_slot_in_past'))) {
+        if (errStr.includes('booking_date_in_past') || errStr.includes('booking_slot_in_past')) {
           showSaveError('The selected booking date or slot has already passed. Please choose an upcoming window.', url);
+          return;
+        }
+        if (errStr.includes('invalid_activity')) {
+          $('activity-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          showSaveError('Selected activity is not recognized. Please choose an activity from the list.', url);
+          return;
+        }
+        if (errStr.includes('invalid_customer_name')) {
+          setFieldInlineError('player-name', 'Please enter a valid full name (letters, spaces, hyphens, and apostrophes only, 2-80 characters).');
+          if (nameInput) {
+            nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            nameInput.focus();
+          }
+          return;
+        }
+        if (errStr.includes('invalid_customer_phone')) {
+          setFieldInlineError('player-phone', 'Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9.');
+          if (phoneInput) {
+            phoneInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            phoneInput.focus();
+          }
+          return;
+        }
+        if (errStr.includes('invalid_team')) {
+          setFieldInlineError('player-team', 'Team name can only contain letters, numbers, spaces, hyphens, and apostrophes (max 80 chars).');
+          if (teamInput) {
+            teamInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            teamInput.focus();
+          }
+          return;
+        }
+        if (errStr.includes('invalid_notes')) {
+          setFieldInlineError('player-notes', 'Notes must not exceed 500 characters.');
+          if (notesInput) {
+            notesInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            notesInput.focus();
+          }
+          return;
+        }
+        if (errStr.includes('invalid_custom_time')) {
+          setFieldInlineError('custom-time-input', 'Custom window note must be 3-120 characters.');
+          if (customInput) {
+            customInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            customInput.focus();
+          }
           return;
         }
         throw error;
@@ -759,17 +1066,18 @@
       showBanner(null);
       bookAnotherBtn.classList.add('hidden');
 
-      // 2. Reset customer fields
-      const nameInput = $('player-name');
-      const phoneInput = $('player-phone');
-      const teamInput = $('player-team');
-      const notesInput = $('player-notes');
-
+      // 2. Reset customer fields and clear inline errors
       if (nameInput) nameInput.value = '';
       if (phoneInput) phoneInput.value = '';
       if (teamInput) teamInput.value = '';
       if (notesInput) notesInput.value = '';
       if (customInput) customInput.value = '';
+
+      setFieldInlineError('player-name', '');
+      setFieldInlineError('player-phone', '');
+      setFieldInlineError('player-team', '');
+      setFieldInlineError('player-notes', '');
+      setFieldInlineError('custom-time-input', '');
 
       // 3. Clear date and time slot state, preserve current activity selection
       state.date = null;
