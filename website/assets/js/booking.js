@@ -58,23 +58,24 @@
 
   function validateName(raw) {
     const val = (raw || '').trim().replace(/\s+/g, ' ');
-    if (!val) return { valid: false, message: 'Full name is required.' };
-    if (val.length < 2) return { valid: false, message: 'Full name must be at least 2 characters.' };
-    if (val.length > 80) return { valid: false, message: 'Full name must not exceed 80 characters.' };
-    if (/\d/.test(val)) return { valid: false, message: 'Full name cannot contain numbers.' };
-    if (!/\p{L}/u.test(val)) return { valid: false, message: 'Full name must contain at least one letter.' };
-    if (!/^[\p{L}\p{M}]+(?:['’\-][\p{L}\p{M}]+)*(?: [\p{L}\p{M}]+(?:['’\-][\p{L}\p{M}]+)*)*$/u.test(val)) {
-      return { valid: false, message: 'Full name can only contain letters, spaces, hyphens, and apostrophes.' };
+    if (
+      !val ||
+      val.length < 2 ||
+      val.length > 80 ||
+      /\d/.test(val) ||
+      !/\p{L}/u.test(val) ||
+      !/^[\p{L}\p{M}]+(?:['’\-][\p{L}\p{M}]+)*(?: [\p{L}\p{M}]+(?:['’\-][\p{L}\p{M}]+)*)*$/u.test(val)
+    ) {
+      return { valid: false, message: 'Invalid name' };
     }
     return { valid: true, value: val };
   }
 
   function validatePhone(raw) {
     const val = (raw || '').trim();
-    if (!val) return { valid: false, message: 'Phone / WhatsApp number is required.' };
-    if (/[^0-9]/.test(val)) return { valid: false, message: 'Phone number must contain exactly 10 digits (no spaces, symbols, or letters).' };
-    if (val.length !== 10) return { valid: false, message: 'Phone number must be exactly 10 digits.' };
-    if (!/^[6-9]/.test(val)) return { valid: false, message: 'Indian mobile numbers must start with 6, 7, 8, or 9.' };
+    if (!val || /[^0-9]/.test(val) || val.length !== 10 || !/^[6-9]/.test(val)) {
+      return { valid: false, message: 'Invalid phone number' };
+    }
     return { valid: true, value: val };
   }
 
@@ -984,7 +985,7 @@
           return;
         }
         if (errStr.includes('invalid_customer_name')) {
-          setFieldInlineError('player-name', 'Please enter a valid full name (letters, spaces, hyphens, and apostrophes only, 2-80 characters).');
+          setFieldInlineError('player-name', 'Invalid name');
           if (nameInput) {
             nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
             nameInput.focus();
@@ -992,7 +993,7 @@
           return;
         }
         if (errStr.includes('invalid_customer_phone')) {
-          setFieldInlineError('player-phone', 'Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9.');
+          setFieldInlineError('player-phone', 'Invalid phone number');
           if (phoneInput) {
             phoneInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
             phoneInput.focus();
